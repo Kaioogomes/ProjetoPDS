@@ -7,6 +7,7 @@ para Alunos, Professores e funcionários da Administração.
 
 1 - Arthur Freiman
 
-2 - Edson de Souza
+2 - Edson Sousa
 
 3 - Kaio Gomes
+
