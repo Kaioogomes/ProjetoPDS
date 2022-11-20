@@ -17,9 +17,11 @@ para Alunos, Professores e funcionários da Administração.
 
 2 - Como aluno eu gostaria de registrar dados do meu treino para que eu possa acompanhar minha evolução.
 
-3 - Como professor eu gostaria de ter a possibilidade de editar e criar fichas de treino para que eu possa instruir meus alunos.
+3 - Como professor eu gostaria de editar e criar fichas de treino para que eu possa instruir meus alunos.
 
-4 - Como professor eu gostaria de ter acesso ao histórico de treino de um aluno para que seja possível planejar seus próximos treinos.
+4 - Como professor eu gostaria de acessar o histórico de treino de um aluno para que seja possível planejar seus próximas fichas.
 
-5 - Como administrador eu gostaria de ter o poder de alterar e adicionar alunos e professores  para que eu possa ter um controle sobre quem acessa a rede.
+5 - Como administrador eu gostaria de adicionar e alterar alunos e professores para que eu possa ter um controle sobre quem acessa a rede.
+
+6 - Como administrador eu gostaria de acessar os gastos e arrecadação da academia, para realizar o planejamento financeiro. 
 
