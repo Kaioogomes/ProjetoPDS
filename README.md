@@ -23,5 +23,5 @@ para Alunos, Professores e funcionários da Administração.
 
 5 - Como administrador eu gostaria de adicionar e alterar alunos e professores para que eu possa ter um controle sobre quem acessa a rede.
 
-6 - Como administrador eu gostaria de 
+6 - Como administrador eu gostaria de saber quem entra e quem sai da academia, para ter controle do fluxo de alunos e professores.
 
