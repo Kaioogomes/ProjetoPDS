@@ -3,12 +3,12 @@
 
 #include <set>
 #include "Pessoa.hpp"
-#include "Exercicio.hpp"
+#include "Treino.hpp"
 
 class Aluno: public Pessoa{
     private:
         bool _contrato_ativo;
-        std::set<Exercicio *> _ficha;
+        std::set<Treino *> _ficha;
 
         
     public:

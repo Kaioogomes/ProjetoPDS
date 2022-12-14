@@ -18,8 +18,14 @@ class Exercicio{
             unsigned repeticoes = 10,
             unsigned tempo_descanso = 30
         );
+        std::string get_nome();
+        unsigned get_series();
+        unsigned get_repeticoes();
+        unsigned get_tempo_descanso();
 
+        bool operator==(const Exercicio &ex);
         std::ostream& operator<<(const Exercicio &ex);
+        std::ostream& operator>>(const Exercicio &ex);
 };
 
 
