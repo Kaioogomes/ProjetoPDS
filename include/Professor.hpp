@@ -9,7 +9,7 @@ class Professor: public Pessoa{
     private:
 
     public:
-        Professor();
+        Professor(std::string nome, std::string cpf);
         Exercicio *novo_exercicio();
         Treino *novo_treino();
         std::string ficha_aluno(Aluno &aluno);
