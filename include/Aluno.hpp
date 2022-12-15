@@ -14,6 +14,8 @@ class Aluno: public Pessoa{
     public:
         Aluno(std::string nome, std::string cpf);
         ~Aluno();
+        void ativar_contrato();
+        void desativar_contrato();
     
 
 };
