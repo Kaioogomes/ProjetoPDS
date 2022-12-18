@@ -14,7 +14,7 @@ class Professor: public Pessoa{
         Treino *novo_treino();
         std::string ficha_aluno(Aluno &aluno);
         void modificar_treino(Aluno &aluno);
-        void associar_ficha(Aluno &aluno, std::set<Treino *> ficha);
+        void associar_ficha(Aluno &aluno, std::map<unsigned, Treino *> ficha);
 };
 
 #endif   
