@@ -8,7 +8,7 @@
 class Aluno: public Pessoa{
     private:
         bool _contrato_ativo;
-        std::set<Treino *> _ficha;
+        std::map<unsigned, Treino *> _ficha;
 
         
     public:
@@ -16,6 +16,8 @@ class Aluno: public Pessoa{
         ~Aluno();
         void ativar_contrato();
         void desativar_contrato();
+        Treino *get_treino(unsigned n_treino);
+        void modificar_treino(unsigned n_treino, Treino treino);
     
 
 };
