@@ -52,5 +52,5 @@ class Exercicio{
         // virtual std::ostream& operator>>(Exercicio &ex) = 0;
 };
 
-
+sdighjfsgkjh
 #endif
