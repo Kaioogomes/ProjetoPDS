@@ -1,6 +1,10 @@
 #include "Aluno.hpp"
 
-Aluno::Aluno(std::string nome, std::string cpf){}
+unsigned Aluno::_gera_matricula = 0;
+
+Aluno::Aluno(std::string nome): _nome(nome){
+    _matricula = ++_gera_matricula;
+}
 
 Aluno::~Aluno(){};
 
@@ -10,6 +14,12 @@ void Aluno::ativar_contrato(){
 
 void Aluno::desativar_contrato(){
     _contrato_ativo = false;
+}
+
+void Aluno::adicionarTreino(Treino *treino){
+    unsigned tam_ficha = _ficha.size();
+
+    _ficha.insert(treino);
 }
 
 // Treino *Aluno::get_treino(unsigned n_treino){

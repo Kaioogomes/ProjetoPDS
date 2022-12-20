@@ -3,19 +3,21 @@
 
 #include <map>
 #include <set>
-#include "Exercicio.hpp"
+#include "Treino.hpp"
 
 class Aluno{
     private:
         std::string _nome;
-        unsigned matricula;
+        unsigned _matricula;
         bool _contrato_ativo;
-        std::map<unsigned, std::set<Exercicio *>> _ficha;
+        std::set<Treino *> _ficha;
+        static unsigned _gera_matricula;
 
         
     public:
-        Aluno(std::string nome, std::string cpf);
+        Aluno(std::string nome);
         ~Aluno();
+        void adicionarTreino(Treino *treino);
         void set_ficha();
         void set_ficha(std::set<Exercicio *> ficha);
         

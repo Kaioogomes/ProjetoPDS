@@ -10,10 +10,10 @@ Exercicio::Exercicio(
     _base(base)
     {}
 
-// bool Exercicio::operator<(const Exercicio &ex){
-//     if(_tipo == ex._tipo){
-//         return (_nome < ex._nome);
-//     }
+bool Exercicio::operator<(const Exercicio &ex){
+    return *_base < *(ex._base);
+}
 
-//     return (_tipo < ex._tipo);
-// }
+ExercicioBase *Exercicio::get_exercicio_base(){
+    return _base;
+}

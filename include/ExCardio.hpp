@@ -14,7 +14,7 @@ class ExCardio: public Exercicio {
                 //  tempo_t tempo = tempo_t(0)
                  );
 
-        virtual std::string get_descricao() const override;
+        virtual std::string get_descricao() override;
         // virtual bool operator==(const Exercicio &ex) override;
         // virtual std::ostream& operator<<(const Exercicio &ex) override;
         // virtual std::ostream& operator>>(Exercicio &ex) override;  
@@ -24,8 +24,6 @@ class ExCardio: public Exercicio {
         // std::string _instrucoes;
         // unsigned _tempo_descanso;
 };
-
-
 
 
 #endif

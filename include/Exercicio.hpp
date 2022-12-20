@@ -28,7 +28,8 @@ class Exercicio{
         );
         // std::string get_nome();
 
-        virtual std::string get_descricao() const = 0;
+        virtual std::string get_descricao() = 0;
+        ExercicioBase *get_exercicio_base();
         // virtual bool operator==(const Exercicio &ex) = 0;
         bool operator<(const Exercicio &ex);
         // virtual std::ostream& operator<<(const Exercicio &ex);
