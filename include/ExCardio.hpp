@@ -1,14 +1,14 @@
-#ifndef MUSCULACAO_H
-#define MUSCULACAO_H
+#ifndef CARDIO_H
+#define CARDIO_H
 
 #include "Exercicio.hpp"
 
-class ExMusculacao: public Exercicio {
+class ExCardio: public Exercicio {
     public:
-        ExMusculacao(std::string nome,
-                     unsigned series = 3,
-                     unsigned repeticoes = 10,
-                     tempo_t tempo = tempo_t(30));
+        ExCardio(std::string nome,
+                 tempo_t tempo_exec,    
+                 std::string instrucoes = 0,
+                 tempo_t tempo = tempo_t(0));
 
         virtual std::string get_descricao() const override;
         // virtual bool operator==(const Exercicio &ex) override;
@@ -16,8 +16,8 @@ class ExMusculacao: public Exercicio {
         // virtual std::ostream& operator>>(Exercicio &ex) override;  
 
     private:
-        unsigned _series;
-        unsigned _repeticoes;
+        tempo_t _tempo_execucao;
+        std::string _instrucoes;
         // unsigned _tempo_descanso;
 };
 

@@ -1,56 +1,22 @@
-#ifndef EXERCICIO_H
-#define EXERCICIO_H
+#include "Exercicio.hpp"
 
-#include <string>
-#include <iostream>
+Exercicio::Exercicio(
+    std::string nome,
+    tempo_t tempo,
+    TipoExerc tipo):
+    _nome(nome), 
+    _tempo_descanso(tempo), 
+    _tipo(tipo)
+    {}
 
-enum TipoExerc{
-    ALONGAMENTO, CARDIO, MUSCULACAO
-};
+std::string Exercicio::get_descricao() const {
+    //Formatar descricao padrao;
+}
 
-struct tempo_t{
-    unsigned _min = 0;
-    unsigned _seg = 0;
-
-    tempo_t(unsigned min, unsigned seg){
-        _seg = seg;
-        _min = min;
+bool Exercicio::operator<(const Exercicio &ex){
+    if(_tipo == ex._tipo){
+        return (_nome < ex._nome);
     }
 
-    tempo_t(unsigned seg){
-        _seg = seg % 60;
-        _min = seg / 60;
-    }
-};
-
-class Exercicio{
-    protected:
-        std::string _nome;
-        TipoExerc _tipo;
-        std::string _instrucoes;   
-        tempo_t _tempo;
-        // unsigned _series;
-        // unsigned _repeticoes;
-        // unsigned _tempo_descanso;
-
-    public:
-        Exercicio(
-            std::string nome,
-            tempo_t tempo,
-            TipoExerc tipo = CARDIO,
-            std::string instrucoes = 0
-            // unsigned series = 3, 
-            // unsigned repeticoes = 10,
-            // unsigned tempo_descanso = 30
-        );
-        std::string get_nome();
-
-        virtual std::string get_descricao() const;
-        // virtual bool operator==(const Exercicio &ex) = 0;
-        bool operator<(const Exercicio &ex);
-        // virtual std::ostream& operator<<(const Exercicio &ex);
-        // virtual std::ostream& operator>>(Exercicio &ex) = 0;
-};
-
-
-#endif
+    return (_tipo < ex._tipo);
+}
