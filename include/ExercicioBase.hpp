@@ -22,6 +22,7 @@ class ExercicioBase{
         unsigned get_codigo();
         std::string get_descricao();
         bool operator<(const ExercicioBase &ex);
+        bool operator==(const ExercicioBase &ex);
 };
 
 

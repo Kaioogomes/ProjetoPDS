@@ -1,6 +1,8 @@
 #include "doctest.h"
 #include "ExercicioBase.hpp"
 
+#define VAR_TESTES_EX
+
 unsigned seed_codigo = 0;
 
 ExercicioBase e("Supino", MUSCULACAO, ++seed_codigo);

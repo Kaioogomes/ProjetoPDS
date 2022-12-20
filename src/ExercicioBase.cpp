@@ -30,6 +30,12 @@ bool ExercicioBase::operator<(const ExercicioBase &ex){
     return _tipo < ex._tipo;
 }
 
+bool ExercicioBase::operator==(const ExercicioBase &ex){
+    return (_nome == ex._nome) &&
+           (_tipo == ex._tipo);
+}
+
+
 unsigned ExercicioBase::get_codigo(){
     return _codigo;
 }

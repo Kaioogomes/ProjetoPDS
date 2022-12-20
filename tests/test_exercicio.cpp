@@ -1,20 +1,21 @@
-// #include "doctest.h"
-// #include "Exercicio.hpp"
+#include "doctest.h"
+#include "ExMusculacao.hpp"
+#include "ExCardio.hpp"
 
-// //TODO DESATUALIZADO
+extern unsigned seed_codigo;
 
+extern ExercicioBase e;//("Supino", MUSCULACAO, ++seed_codigo);
+extern ExercicioBase e2;//("Esteira", CARDIO, ++seed_codigo);
 
-// TEST_CASE("Teste de construtor e operador de igualdade"){
-//     Exercicio ombro = Exercicio("Levantamento lateral");
-//     Exercicio perna = Exercicio("Leg Press", 4, 8, 50);
+ExMusculacao em(&e, 3, 15);
+ExCardio ec(&e2, 15);
 
-//     CHECK_EQ(ombro, Exercicio("Levantamento Lateral", 3, 10, 30));
-//     CHECK_EQ(perna.get_nome(), "Leg Press");
-//     CHECK_EQ(perna.get_series(), 4);
-//     CHECK_EQ(perna.get_repeticoes(), 8);
-//     CHECK_EQ(perna.get_tempo_descanso(), 30);
-// }
+TEST_CASE("Testando atribuição da base"){
+    CHECK(*em.get_exercicio_base() == e);
+    CHECK(*ec.get_exercicio_base() == e2);
+}
 
-// TEST_CASE("Teste de operador de saída"){}
-
-// TEST_CASE("Teste de operador de entrada"){}
+TEST_CASE("Testando descrição"){
+    CHECK_EQ(em.get_descricao(), "1,Supino,3,15");
+    CHECK_EQ(ec.get_descricao(),"2,Esteira,15");    
+}
