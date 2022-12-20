@@ -30,7 +30,7 @@ class Exercicio{
 
         virtual std::string get_descricao() const = 0;
         // virtual bool operator==(const Exercicio &ex) = 0;
-        // bool operator<(const Exercicio &ex);
+        bool operator<(const Exercicio &ex);
         // virtual std::ostream& operator<<(const Exercicio &ex);
         // virtual std::ostream& operator>>(Exercicio &ex) = 0;
 };

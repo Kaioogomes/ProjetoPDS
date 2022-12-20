@@ -17,6 +17,7 @@ class ExercicioBase{
         ExercicioBase(std::string nome, TipoExerc tipo);
         std::string get_nome();
         TipoExerc get_tipo();
+        bool operator<(const ExercicioBase &ex);
 };
 
 
