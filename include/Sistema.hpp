@@ -7,7 +7,6 @@
 #include "Treino.hpp"
 
 #include <iostream>
-using namespace std;
 
 void inicializar_sistema(std::map<unsigned, Aluno>  &aluno_db,
                          std::map<unsigned, Exercicio> &exercicio_db,
