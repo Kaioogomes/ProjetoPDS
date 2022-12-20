@@ -100,18 +100,20 @@ void sistema_administrador(){
                 return;
             case 2:
                 break;
-            case 3:
+            case 3:{
                 unsigned matricula;
                 cout<<"Matrícula a ser desligada: ";
                 cin>>matricula;
                 //administrador.desligar_aluno();
                 break;
-            case 4:
+            }
+            case 4:{
                 unsigned matricula;
                 cout<<"Matrícula a ser religada: ";
                 cin>>matricula;
                 //administrador.ativar_contrato();
                 break;    
+            }
         }        
     }
 }
