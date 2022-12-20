@@ -4,9 +4,11 @@
 #include "Aluno.hpp"
 #include "Exercicio.hpp"
 
+#define SENHA_PROF "senha_prof"
+
 class Professor{
     private:
-        std::string _senha = "senha_prof";
+        std::string _senha = SENHA_PROF;
     public:
         Professor();
         std::string get_senha();
