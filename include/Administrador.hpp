@@ -3,12 +3,15 @@
 
 #include "Aluno.hpp"
 
+#include <string>
+#include <iostream>
+
 class Administrador{
     private:
-
-
+        std::string _senha = "senha_adm";
     public:
-        Administrador(std::string nome, std::string cpf);
+        Administrador();
+        bool verificar_senha();
         void ativar_contrato(Aluno &aluno);
         void desligar_aluno(Aluno &aluno);
         
