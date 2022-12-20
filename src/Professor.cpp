@@ -6,6 +6,9 @@ std::string Professor::get_senha(){
     return _senha;
 }
 
+void Professor::adicionar_treino(Aluno &aluno, Treino *treino){
+    aluno.adicionar_treino(treino);
+}
 //Exercicio *novo_exercicio();
 
 //Treino *novo_treino();

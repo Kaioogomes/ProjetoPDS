@@ -8,6 +8,10 @@ Aluno::Aluno(std::string nome): _nome(nome){
 
 Aluno::~Aluno(){};
 
+bool Aluno::status_contrato(){
+    return _contrato_ativo;
+}
+
 void Aluno::ativar_contrato(){
     _contrato_ativo = true;
 }
@@ -16,10 +20,14 @@ void Aluno::desativar_contrato(){
     _contrato_ativo = false;
 }
 
-void Aluno::adicionarTreino(Treino *treino){
+void Aluno::adicionar_treino(Treino *treino){
     unsigned tam_ficha = _ficha.size();
 
     _ficha.insert(treino);
+}
+
+void Aluno::set_gerador_matricula(unsigned mat){
+    _gera_matricula = mat;
 }
 
 // Treino *Aluno::get_treino(unsigned n_treino){
