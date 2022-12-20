@@ -9,7 +9,7 @@ class Professor{
         std::string _senha = "senha_prof";
     public:
         Professor();
-        bool verificar_senha();
+        std::string get_senha();
         Exercicio *novo_exercicio();
         //Treino *novo_treino();
         std::string ficha_aluno(Aluno &aluno);

@@ -5,13 +5,13 @@
 using namespace std;
 
 bool verificar_senha_professor(){
-    Professor professor;
-    return professor.verificar_senha();  
+    // Professor professor;
+    // return professor.verificar_senha();  
 }
 
 bool verificar_senha_administrador(){
-    Administrador administrador;
-    return administrador.verificar_senha();  
+    // Administrador administrador;
+    // return administrador.verificar_senha();  
 }
 
 unsigned entrar_sistema(){

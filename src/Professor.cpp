@@ -3,19 +3,23 @@
 
 Professor::Professor(){};
 
-bool Professor::verificar_senha(){
-    std::string senha;
-    std::cout<<std::endl<<"Senha: ";
-    std::cin>>senha;
-    if(senha == _senha)
-        return true;
-    std::cout<<"Senha Incorreta"<<std::endl<<"1 - Tentar Novamente     2 - Voltar";
-    unsigned opcao;
-    std::cin>>opcao;
-    if(opcao == 1)
-        return verificar_senha();
-    if(opcao == 2)
-        return false;
+// bool Professor::verificar_senha(){
+//     std::string senha;
+//     std::cout<<std::endl<<"Senha: ";
+//     std::cin>>senha;
+//     if(senha == _senha)
+//         return true;
+//     std::cout<<"Senha Incorreta"<<std::endl<<"1 - Tentar Novamente     2 - Voltar";
+//     unsigned opcao;
+//     std::cin>>opcao;
+//     if(opcao == 1)
+//         return verificar_senha();
+//     if(opcao == 2)
+//         return false;
+// }
+
+std::string Professor::get_senha(){
+    return _senha;
 }
 
 //Exercicio *novo_exercicio();
