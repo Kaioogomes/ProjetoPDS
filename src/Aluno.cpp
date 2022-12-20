@@ -4,6 +4,7 @@ unsigned Aluno::_gera_matricula = 0;
 
 Aluno::Aluno(std::string nome): _nome(nome){
     _matricula = ++_gera_matricula;
+    _contrato_ativo = true;
 }
 
 Aluno::~Aluno(){};
