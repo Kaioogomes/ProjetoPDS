@@ -10,7 +10,6 @@
 class Administrador{
     private:
         std::string _senha = SENHA_ADM;
-        int teste;
     public:
         Administrador();
         std::string get_senha();
