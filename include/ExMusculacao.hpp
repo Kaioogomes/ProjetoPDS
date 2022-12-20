@@ -5,10 +5,15 @@
 
 class ExMusculacao: public Exercicio {
     public:
-        ExMusculacao(std::string nome,
-                     unsigned series = 3,
-                     unsigned repeticoes = 10,
-                     tempo_t tempo = tempo_t(30));
+        ExMusculacao(
+                     ExercicioBase *base,
+                     unsigned series,
+                     unsigned repeticoes
+                    //  std::string nome,
+                    //  unsigned series = 3,
+                    //  unsigned repeticoes = 10,
+                    //  tempo_t tempo = tempo_t(30)
+                     );
 
         virtual std::string get_descricao() const override;
         // virtual bool operator==(const Exercicio &ex) override;

@@ -2,52 +2,35 @@
 #define EXERCICIO_H
 
 #include <string>
-#include <iostream>
-
-enum TipoExerc{
-    CARDIO, MUSCULACAO
-};
-
-struct tempo_t{
-    unsigned _min = 0;
-    unsigned _seg = 0;
-
-    tempo_t(unsigned min, unsigned seg){
-        _seg = seg;
-        _min = min;
-    }
-
-    tempo_t(unsigned seg){
-        _seg = seg % 60;
-        _min = seg / 60;
-    }
-};
+#include "ExercicioBase.hpp"
 
 class Exercicio{
     protected:
-        std::string _nome;
-        TipoExerc _tipo;
+        ExercicioBase *_base;
+        // std::string _nome;
+        // TipoExerc _tipo;
         // std::string _instrucoes;   
-        tempo_t _tempo_descanso;
+        // tempo_t _tempo_descanso;
         // unsigned _series;
         // unsigned _repeticoes;
         // unsigned _tempo_descanso;
 
     public:
         Exercicio(
-            std::string nome,
-            tempo_t tempo,
-            TipoExerc tipo
+            ExercicioBase *base
+            // std::string nome,
+            // tempo_t tempo,
+            // TipoExerc tipo
             // std::string instrucoes = 0
             // unsigned series = 3, 
             // unsigned repeticoes = 10,
             // unsigned tempo_descanso = 30
         );
-        std::string get_nome();
+        // std::string get_nome();
 
         virtual std::string get_descricao() const = 0;
         // virtual bool operator==(const Exercicio &ex) = 0;
-        bool operator<(const Exercicio &ex);
+        // bool operator<(const Exercicio &ex);
         // virtual std::ostream& operator<<(const Exercicio &ex);
         // virtual std::ostream& operator>>(Exercicio &ex) = 0;
 };

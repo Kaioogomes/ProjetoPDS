@@ -1,12 +1,12 @@
 #include "ExMusculacao.hpp"
 
 ExMusculacao::ExMusculacao(
-                           std::string nome,
+                           ExercicioBase *base,
                            unsigned series,
-                           unsigned repeticoes,
-                           tempo_t tempo):
+                           unsigned repeticoes
+                           ):
     
-    Exercicio(nome, tempo, MUSCULACAO),
+    Exercicio(base),
     _series(series),
     _repeticoes(repeticoes)
 {

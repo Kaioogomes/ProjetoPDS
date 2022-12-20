@@ -1,6 +1,6 @@
 #include "Administrador.hpp"
 
-Administrador::Administrador(std::string nome, std::string cpf): Pessoa(nome, cpf){}
+Administrador::Administrador(std::string nome, std::string cpf){}
 
 void Administrador::ativar_contrato(Aluno &aluno){
     aluno.ativar_contrato();

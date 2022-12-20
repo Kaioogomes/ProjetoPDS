@@ -1,14 +1,14 @@
 #ifndef ALUNO_H
 #define ALUNO_H
 
+#include <map>
 #include <set>
-#include "Pessoa.hpp"
-#include "Treino.hpp"
+#include "Exercicio.hpp"
 
-class Aluno: public Pessoa{
+class Aluno{
     private:
         bool _contrato_ativo;
-        std::map<unsigned, Treino *> _ficha;
+        std::map<unsigned, std::set<Exercicio *>> _ficha;
 
         
     public:
@@ -16,8 +16,8 @@ class Aluno: public Pessoa{
         ~Aluno();
         void ativar_contrato();
         void desativar_contrato();
-        Treino *get_treino(unsigned n_treino);
-        void modificar_treino(unsigned n_treino, Treino treino);
+        // Treino *get_treino(unsigned n_treino);
+        // void modificar_treino(unsigned n_treino, Treino treino);
     
 
 };

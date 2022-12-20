@@ -1,3 +1,3 @@
-#include "Professor.hpp"
+// #include "Professor.hpp"
 
-Professor::Professor(std::string nome, std::string cpf):Pessoa(nome, cpf){}
+// Professor::Professor(std::string nome, std::string cpf):Pessoa(nome, cpf){}

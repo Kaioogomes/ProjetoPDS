@@ -1,17 +1,17 @@
-// std::string Exercicio::get_descricao() const {
-//     //Formatar descricao padrao;
-// }
 #include "ExCardio.hpp"
 
 ExCardio::ExCardio(
-                           std::string nome,
-                           tempo_t tempo_exec,
-                           std::string instrucoes,
-                           tempo_t tempo):
+                    ExercicioBase *base,
+                    unsigned tempo_exec
+                //    std::string nome,
+                //    tempo_t tempo_exec,
+                //    std::string instrucoes,
+                //    tempo_t tempo
+                   ):
     
-    Exercicio(nome, tempo, CARDIO),
-    _tempo_execucao(tempo_exec),
-    _instrucoes(instrucoes)
+    Exercicio(base),
+    _tempo_execucao(tempo_exec)
+    // _instrucoes(instrucoes)
 {
 }
 

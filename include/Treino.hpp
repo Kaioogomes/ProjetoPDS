@@ -1,17 +1,17 @@
-#ifndef TREINO_H
-#define TREINO_H
+// #ifndef TREINO_H
+// #define TREINO_H
 
-#include "Exercicio.hpp"
-#include <map>
+// #include "Exercicio.hpp"
+// #include <set>
 
-class Treino{
-    private:
-        std::map<unsigned, Exercicio *> _exercicios;
-    public:
-        Treino();
-        ~Treino();
-};
+// class Treino{
+//     private:
+//         std::set<Exercicio *> _exercicios;
+//     public:
+//         Treino();
+//         ~Treino();
+// };
 
 
 
-#endif
+// #endif

@@ -1,10 +1,9 @@
 #ifndef ADM_H
 #define ADM_H
 
-#include "Pessoa.hpp"
 #include "Aluno.hpp"
 
-class Administrador: public Pessoa{
+class Administrador{
     private:
 
 
