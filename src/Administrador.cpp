@@ -21,7 +21,7 @@ std::string Administrador::get_senha(){
     return _senha;
 }
 
-void Administrador::ativar_contrato(Aluno &aluno){
+void Administrador::religar_aluno(Aluno &aluno){
     aluno.ativar_contrato();
 }
 

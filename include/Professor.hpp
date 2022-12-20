@@ -3,7 +3,6 @@
 
 #include "Aluno.hpp"
 #include "Treino.hpp"
-#include "Exercicio.hpp"
 
 #define SENHA_PROF "senha_prof"
 
@@ -16,7 +15,7 @@ class Professor{
         Exercicio *novo_exercicio();
         //Treino *novo_treino();
         std::string ficha_aluno(unsigned matricula);
-        void adicionar_treino(unsigned matricula, Treino *treino);
+        void adicionar_treino(Aluno &aluno, Treino *treino);
         void remover_treino(unsigned matricula, Treino *treino);
         //void associar_ficha(Aluno &aluno, std::map<unsigned, Treino *> ficha);
 };

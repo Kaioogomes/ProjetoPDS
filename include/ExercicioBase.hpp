@@ -11,14 +11,15 @@ enum TipoExerc{
 
 class ExercicioBase{
     private:
-        unsigned _codigo;
         std::string _nome;
         TipoExerc _tipo;
-        static unsigned _gera_cod;
+        unsigned _codigo;
+        // static unsigned _gera_cod;
     public:
-        ExercicioBase(std::string nome, TipoExerc tipo);
+        ExercicioBase(std::string nome, TipoExerc tipo, unsigned codigo);
         std::string get_nome();
         TipoExerc get_tipo();
+        unsigned get_codigo();
         std::string get_descricao();
         bool operator<(const ExercicioBase &ex);
 };
