@@ -17,10 +17,10 @@ class Aluno{
     public:
         Aluno(std::string nome);
         ~Aluno();
+        bool situacao_contrato();
         void adicionarTreino(Treino *treino);
         void set_ficha();
         void set_ficha(std::set<Exercicio *> ficha);
-        
         void ativar_contrato();
         void desativar_contrato();
         // Treino *get_treino(unsigned n_treino);
