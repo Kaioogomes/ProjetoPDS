@@ -15,7 +15,7 @@ void inicializar_sistema(std::map<unsigned, Aluno>  &aluno_db,
                 for(auto it = aluno_db.begin(); it != aluno_db.end(); it = next(it)){
                     if(it->first == matricula)
                         sistema_aluno(it->second);
-                        break;
+                    break;
                 }
                 break;
             case 2:
@@ -91,7 +91,7 @@ unsigned entrar_sistema(){
 void sistema_aluno(Aluno &aluno){
     unsigned comando;
     for(;;){
-        system("clear");
+        //system("clear");
         cout<<"1 - Voltar ao Inicio     2 - Imprimir Treino"<<endl;
 
         cin>>comando;
@@ -109,7 +109,7 @@ void sistema_professor(){
     Professor professor;
     unsigned comando;
     for(;;){
-        system("clear");
+        //system("clear");
         cout<<"1 - Voltar ao Inicio     2 - "<<endl;
 
         cin>>comando;
@@ -126,7 +126,7 @@ void sistema_administrador(){
     Administrador administrador;
     unsigned comando;
     for(;;){
-        system("clear");
+        //system("clear");
         cout<<"1 - Voltar ao Inicio     2 - Adicionar Novo Aluno"<<endl;
         cout<<"3 - Desligar Aluno       4 - Religar Aluno"<<endl;
 

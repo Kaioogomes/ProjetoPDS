@@ -13,7 +13,7 @@ class Administrador{
     public:
         Administrador();
         std::string get_senha();
-        void ativar_contrato(Aluno &aluno);
+        void religar_aluno(Aluno &aluno);
         void desligar_aluno(Aluno &aluno);
         
 
