@@ -5,7 +5,6 @@ OBJDIR := build
 BINDIR := bin
 
 MAIN := program/main.cpp
-ALTER := program/alter.cpp
 TESTER := program/tester.cpp
 
 SRCEXT := cpp
@@ -14,7 +13,7 @@ OBJECTS := $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
 TSTSOURCES := $(shell find $(TSTDIR) -type f -name *.$(SRCEXT))
 
 # -g debug
-CFLAGS := -Wall -O3 -std=c++11
+CFLAGS := -g -Wall -O3 -std=c++14
 INC := -I include/ -I third_party/
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
@@ -32,7 +31,10 @@ tests: $(OBJECTS)
 
 all: main
 
-clean:
-	$(RM) -r $(OBJDIR)/* $(BINDIR)/*
+run: main
+	$(BINDIR)/main
 
-.PHONY: clean
+clean:
+	$(RM) -r $(OBJDIR)/* $(BINDIR)/* coverage/* *.gcda *.gcno
+
+.PHONY: clean coverage
