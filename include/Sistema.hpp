@@ -9,7 +9,8 @@
 #include <iostream>
 
 void inicializar_sistema(std::map<unsigned, Aluno>  &aluno_db,
-                         std::map<unsigned, Exercicio> &exercicio_db,
+                         std::map<unsigned, ExCardio> &cardio_db,
+                         std::map<unsigned, ExMusculacao> &musculacao_db,
                          std::map<unsigned, Treino> &treino_db);
 
 bool verificar_senha(Professor &professor);
