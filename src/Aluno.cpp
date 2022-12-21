@@ -31,6 +31,14 @@ void Aluno::set_gerador_matricula(unsigned mat){
     _gera_matricula = mat;
 }
 
+std::string Aluno::get_nome(){
+    return _nome;
+}
+
+unsigned Aluno::get_matricula(){
+    return _matricula;
+}
+
 // Treino *Aluno::get_treino(unsigned n_treino){
 //     return _ficha.find(n_treino)->second;
 // }
