@@ -3,7 +3,8 @@
 using namespace std;
 
 void inicializar_sistema(std::map<unsigned, Aluno>  &aluno_db,
-                         std::map<unsigned, Exercicio> &exercicio_db,
+                         std::map<unsigned, ExCardio> &cardio_db,
+                         std::map<unsigned, ExMusculacao> &musculacao_db,
                          std::map<unsigned, Treino> &treino_db){
     cout<<"Sistema Iniciado"<<endl;
     for(;;){
@@ -53,17 +54,17 @@ bool verificar_senha(Administrador &administrador){
     std::cin>>senha;
     if(administrador.get_senha() == senha)
         return true;
-    std::cout<<"Senha Incorreta"<<std::endl<<"1 - Tentar Novamente          2 - Voltar";
+    std::cout<<"Senha Incorreta"<<std::endl<<"1 - Tentar Novamente          2 - Voltar"<<endl;
     unsigned opcao;
     std::cin>>opcao;
-    while(opcao != 1 || opcao != 2){
+    for(;;){
+        if(opcao == 1)
+            return verificar_senha(administrador);
+        if(opcao == 2)
+            return false;
         cout<<"Opcao Inválida ";
         cin>>opcao;
     }
-    if(opcao == 1)
-        return verificar_senha(administrador);
-    if(opcao == 2)
-        return false;
 }
 
 unsigned entrar_sistema(){
@@ -126,7 +127,7 @@ void sistema_administrador(){
     Administrador administrador;
     unsigned comando;
     for(;;){
-        //system("clear");
+        system("clear");
         cout<<"1 - Voltar ao Inicio     2 - Adicionar Novo Aluno"<<endl;
         cout<<"3 - Desligar Aluno       4 - Religar Aluno"<<endl;
 
