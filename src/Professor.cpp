@@ -2,14 +2,17 @@
 
 Professor::Professor(){};
 
-std::string Professor::get_senha(){
-    return _senha;
+bool Professor::match_senha(std::string candidata){
+    return _senha == candidata;
 }
 
 void Professor::adicionar_treino(Aluno &aluno, Treino *treino){
     aluno.adicionar_treino(treino);
 }
-//Exercicio *novo_exercicio();
+
+ExercicioBase *novo_exercicio(std::string nome, TipoExerc tipo, unsigned codigo){
+    return new ExercicioBase(nome, tipo, codigo);
+}
 
 //Treino *novo_treino();
 

@@ -11,18 +11,18 @@ class Aluno{
         unsigned _matricula;
         bool _contrato_ativo;
         std::set<Treino *> _ficha;
-        static unsigned _gera_matricula;
+        // static unsigned _gera_matricula;
 
         
     public:
-        Aluno(std::string nome);
+        Aluno(std::string nome, unsigned matricula);
         ~Aluno();
         void adicionar_treino(Treino *treino);
         void trocar_ficha(std::set<Treino *> ficha);
         bool status_contrato();
         void ativar_contrato();
         void desativar_contrato();
-        void set_gerador_matricula(unsigned mat);
+        // void set_gerador_matricula(unsigned mat);
         std::string get_nome();
         unsigned get_matricula();
         // Treino *get_treino(unsigned n_treino);

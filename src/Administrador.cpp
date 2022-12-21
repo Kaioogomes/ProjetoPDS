@@ -17,8 +17,8 @@ Administrador::Administrador(){};
 //         return false;
 // }
 
-std::string Administrador::get_senha(){
-    return _senha;
+bool Administrador::match_senha(std::string candidata){
+    return _senha == candidata;
 }
 
 void Administrador::religar_aluno(Aluno &aluno){
@@ -29,3 +29,6 @@ void Administrador::desligar_aluno(Aluno &aluno){
     aluno.desativar_contrato();
 }
 
+Aluno *Administrador::novo_aluno(std::string nome, unsigned matricula){
+    return new Aluno(nome, matricula);
+}

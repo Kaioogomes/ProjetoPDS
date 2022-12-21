@@ -1,10 +1,13 @@
 #include "Aluno.hpp"
 
-unsigned Aluno::_gera_matricula = 0;
+// unsigned Aluno::_gera_matricula = 0;
 
-Aluno::Aluno(std::string nome): _nome(nome){
-    _matricula = ++_gera_matricula;
-    _contrato_ativo = true;
+Aluno::Aluno(std::string nome, unsigned matricula): 
+    _nome(nome),
+    _matricula(matricula),
+    _contrato_ativo(true){
+    // _matricula = ++_gera_matricula;
+    // _contrato_ativo = true;
 }
 
 Aluno::~Aluno(){};
@@ -27,9 +30,9 @@ void Aluno::adicionar_treino(Treino *treino){
     _ficha.insert(treino);
 }
 
-void Aluno::set_gerador_matricula(unsigned mat){
-    _gera_matricula = mat;
-}
+// void Aluno::set_gerador_matricula(unsigned mat){
+//     _gera_matricula = mat;
+// }
 
 std::string Aluno::get_nome(){
     return _nome;

@@ -12,9 +12,10 @@ class Administrador{
         std::string _senha = SENHA_ADM;
     public:
         Administrador();
-        std::string get_senha();
+        bool match_senha(std::string canditada);
         void religar_aluno(Aluno &aluno);
         void desligar_aluno(Aluno &aluno);
+        Aluno *novo_aluno(std::string nome, unsigned matricula);
         
 
 };

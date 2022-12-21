@@ -11,10 +11,10 @@ class Professor{
         std::string _senha = SENHA_PROF;
     public:
         Professor();
-        std::string get_senha();
-        Exercicio *novo_exercicio();
+        bool match_senha(std::string candidata);
+        ExercicioBase *novo_exercicio(std::string nome, TipoExerc tipo, unsigned codigo);
         //Treino *novo_treino();
-        std::string ficha_aluno(unsigned matricula);
+        // std::string ficha_aluno(unsigned matricula);
         void adicionar_treino(Aluno &aluno, Treino *treino);
         void remover_treino(unsigned matricula, Treino *treino);
         //void associar_ficha(Aluno &aluno, std::map<unsigned, Treino *> ficha);
