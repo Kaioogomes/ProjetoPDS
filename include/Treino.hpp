@@ -1,7 +1,8 @@
 #ifndef TREINO_H
 #define TREINO_H
 
-#include "Exercicio.hpp"
+#include "ExCardio.hpp"
+#include "ExMusculacao.hpp"
 #include <set>
 #include <vector>
 
@@ -10,11 +11,12 @@
 
 class Treino{
     private:
-        std::set<Exercicio *> _exercicios;
+        std::set<ExCardio *> _exercicios_cardio;
+        std::set<ExMusculacao *> _exercicio_musculacao;
         std::string _categoria;
     public:
-        Treino(std::vector<unsigned> _codigos);
-        ~Treino();
+        //Treino(std::vector<unsigned> _codigos);
+        //~Treino();
 };
 
 
