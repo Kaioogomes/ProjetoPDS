@@ -23,6 +23,8 @@ class Aluno{
         void ativar_contrato();
         void desativar_contrato();
         void set_gerador_matricula(unsigned mat);
+        std::string get_nome();
+        unsigned get_matricula();
         // Treino *get_treino(unsigned n_treino);
         // void modificar_treino(unsigned n_treino, Treino treino);
     
