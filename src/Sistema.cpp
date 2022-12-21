@@ -28,43 +28,52 @@ void Sistema::inicializar_sistema(){
      }
 }
 
-bool Sistema::verificar_senha_professor(Professor &professor){
-    string senha;
-    cout<<endl<<"Senha: ";
-    cin>>senha;
-    if(professor.get_senha() == senha)
-        return true;
-    cout<<endl<<"Senha Incorreta"<<endl<<"1 - Tentar Novamente     2 - Voltar"<<endl;
-    unsigned opcao;
-    cin>>opcao;
-    for(;;){
-        if(opcao == 1)
-            return verificar_senha(professor);
-        if(opcao == 2)
-            return false;
-        cout<<"Opcao Inválida ";
-        cin>>opcao;
-    }
-};
+// bool Sistema::verificar_senha_professor(Professor &professor){
+//     string senha;
+//     cout<<endl<<"Senha: ";
+//     cin>>senha;
+//     if(professor.get_senha() == senha)
+//         return true;
+//     cout<<endl<<"Senha Incorreta"<<endl<<"1 - Tentar Novamente     2 - Voltar"<<endl;
+//     unsigned opcao;
+//     cin>>opcao;
+//     for(;;){
+//         if(opcao == 1)
+//             return verificar_senha(professor);
+//         if(opcao == 2)
+//             return false;
+//         cout<<"Opcao Inválida ";
+//         cin>>opcao;
+//     }
+// };
 
-bool Sistema::verificar_senha_administrador(){
+// bool Sistema::verificar_senha_administrador(){
+//     string senha;
+//     cout<<endl<<"Senha: ";
+//     cin>>senha;
+//     if(adm.match_senha(senha))
+//         return true;
+//     cout<<endl<<"Senha Incorreta"<<endl<<"1 - Tentar Novamente          2 - Voltar"<<endl;
+//     unsigned opcao;
+//     cin>>opcao;
+//     for(;;){
+//         if(opcao == 1)
+//             return verificar_senha(adm);
+//         if(opcao == 2)
+//             return false;
+//         cout<<"Opcao Inválida ";
+//         cin>>opcao;
+//     }
+// }
+std::string Sistema::ler_senha(){
     string senha;
+
     cout<<endl<<"Senha: ";
     cin>>senha;
-    if(adm.match_senha(senha))
-        return true;
-    cout<<endl<<"Senha Incorreta"<<endl<<"1 - Tentar Novamente          2 - Voltar"<<endl;
-    unsigned opcao;
-    cin>>opcao;
-    for(;;){
-        if(opcao == 1)
-            return verificar_senha(adm);
-        if(opcao == 2)
-            return false;
-        cout<<"Opcao Inválida ";
-        cin>>opcao;
-    }
+
+    return senha;
 }
+
 
 unsigned Sistema::entrar_sistema(){
     unsigned i;
@@ -73,18 +82,20 @@ unsigned Sistema::entrar_sistema(){
     cout<<endl<<"Selecione Tipo de Usuário:"<<endl;
     cout<<"1 - Aluno"<<endl<<"2 - Professor"<<endl<<"3 - Administrador"<<endl;
     cin>>i;
-    switch(i){
-        case 1: 
-            return 1;
-        case 2:{
-            if(verificar_senha(prof))
-                return 2;
-            }
-        case 3:{
-            if(verificar_senha(adm))
-                return 3;
-            }
-        }
+    
+    escolha_modo(i);
+    // switch(i){
+    //     case 1: 
+    //         return 1;
+    //     case 2:{
+    //         if(verificar_senha(prof))
+    //             return 2;
+    //         }
+    //     case 3:{
+    //         if(verificar_senha(adm))
+    //             return 3;
+    //         }
+    //     }
     return entrar_sistema();
 }
 
@@ -160,5 +171,27 @@ void Sistema::sistema_administrador(){
                 break;    
             }
         }        
+    }
+}
+
+
+void Sistema::escolha_modo(unsigned modo){
+
+
+    switch(modo){
+        case 1: 
+            //
+            // sistema_aluno()
+            break;
+        case 2:
+            if(prof.match_senha(ler_senha()))
+                sistema_professor();
+            
+            break;
+        case 3:
+            if(adm.match_senha(ler_senha()))
+                sistema_administrador();
+            
+            break;
     }
 }

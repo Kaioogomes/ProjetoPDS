@@ -18,14 +18,16 @@ class Sistema{
         std::map<unsigned, ExMusculacao> musculacao_db;
         std::map<unsigned, Treino> treino_db;
     public:
-        Sistema_classe();
+        Sistema();
         void inicializar_sistema();
-        bool verificar_senha_professor();
-        bool verificar_senha_administrador();
+        // bool verificar_senha_professor();
+        // bool verificar_senha_administrador();
+        std::string ler_senha();
         unsigned entrar_sistema();
         void sistema_aluno(Aluno &aluno);
         void sistema_professor();
         void sistema_administrador();
+        void escolha_modo(unsigned modo);
 };
 
 
