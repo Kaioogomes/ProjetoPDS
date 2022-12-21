@@ -7,73 +7,22 @@ Sistema::Sistema(){}
 
 void Sistema::inicializar_sistema(){
     for(;;){
-        switch(entrar_sistema()){
-            case 1:
-                unsigned matricula;
-                cout<<"Matrícula: ";
-                cin>>matricula;
-                for(auto it = aluno_db.begin(); it != aluno_db.end(); it = next(it)){
-                    if(it->first == matricula)
-                        sistema_aluno(it->second);
-                    break;
-                }
-                break;
-            case 2:
-                sistema_professor();
-                break;
-            case 3:
-                sistema_administrador();
-                break;
-         }
-     }
+            entrar_sistema();
+    }
 }
 
-// bool Sistema::verificar_senha_professor(Professor &professor){
-//     string senha;
-//     cout<<endl<<"Senha: ";
-//     cin>>senha;
-//     if(professor.get_senha() == senha)
-//         return true;
-//     cout<<endl<<"Senha Incorreta"<<endl<<"1 - Tentar Novamente     2 - Voltar"<<endl;
-//     unsigned opcao;
-//     cin>>opcao;
-//     for(;;){
-//         if(opcao == 1)
-//             return verificar_senha(professor);
-//         if(opcao == 2)
-//             return false;
-//         cout<<"Opcao Inválida ";
-//         cin>>opcao;
-//     }
-// };
 
-// bool Sistema::verificar_senha_administrador(){
-//     string senha;
-//     cout<<endl<<"Senha: ";
-//     cin>>senha;
-//     if(adm.match_senha(senha))
-//         return true;
-//     cout<<endl<<"Senha Incorreta"<<endl<<"1 - Tentar Novamente          2 - Voltar"<<endl;
-//     unsigned opcao;
-//     cin>>opcao;
-//     for(;;){
-//         if(opcao == 1)
-//             return verificar_senha(adm);
-//         if(opcao == 2)
-//             return false;
-//         cout<<"Opcao Inválida ";
-//         cin>>opcao;
-//     }
-// }
 std::string Sistema::ler_senha(){
     string senha;
-
     cout<<endl<<"Senha: ";
     cin>>senha;
 
     return senha;
 }
 
+Aluno *Sistema::encontrar_aluno(unsigned matricula){
+    return (aluno_db.find(matricula))->second;
+}
 
 unsigned Sistema::entrar_sistema(){
     unsigned i;
@@ -82,20 +31,7 @@ unsigned Sistema::entrar_sistema(){
     cout<<endl<<"Selecione Tipo de Usuário:"<<endl;
     cout<<"1 - Aluno"<<endl<<"2 - Professor"<<endl<<"3 - Administrador"<<endl;
     cin>>i;
-    
     escolha_modo(i);
-    // switch(i){
-    //     case 1: 
-    //         return 1;
-    //     case 2:{
-    //         if(verificar_senha(prof))
-    //             return 2;
-    //         }
-    //     case 3:{
-    //         if(verificar_senha(adm))
-    //             return 3;
-    //         }
-    //     }
     return entrar_sistema();
 }
 
@@ -103,6 +39,7 @@ void Sistema::sistema_aluno(Aluno &aluno){
     unsigned comando;
     for(;;){
         system("clear");
+        cout<<aluno.get_nome()<<endl<<endl;
         cout<<"1 - Voltar ao Inicio     2 - Imprimir Treino"<<endl;
 
         cin>>comando;
@@ -139,59 +76,83 @@ void Sistema::sistema_administrador(){
         cout<<"Modo de Administrador"<<endl<<endl;
         cout<<"1 - Voltar ao Inicio     2 - Adicionar Novo Aluno"<<endl;
         cout<<"3 - Desligar Aluno       4 - Religar Aluno"<<endl;
+        cout<<"5 - Verificar Situação de Contrato"<<endl;
 
         cin>>comando;
         switch(comando){
             case 1:
                 system("clear");
                 return;
-            case 2:
+            case 2:{
+                string nome;
+                unsigned matricula = aluno_db.size()+1;
+                cout<<"Nome do aluno: ";
+                cin>>nome;
+                Aluno *novo = adm.novo_aluno(nome, matricula);
+                aluno_db.emplace(matricula, novo);
+                cout<<"Aluno "<<nome<<" adicionado com matricula "<<matricula<<endl;
+                getchar();
+                getchar();
                 break;
+            }
             case 3:{
                 unsigned matricula;
                 cout<<"Matrícula a ser desligada: ";
                 cin>>matricula;
-                for(auto it = aluno_db.begin(); it != aluno_db.end(); it = next(it)){
-                    if(it->first == matricula){
-                        adm.desligar_aluno(it->second);
-                        cout<<"Aluno "<<(it->second).get_nome()<<" desligado"<<endl;
-                        getchar();
-                        getchar();
-                        break;
-                    }
-
-                }
+                Aluno aluno = (*aluno_db.find(matricula)->second);
+                adm.desligar_aluno(aluno);
+                cout<<"Contrato de "<<aluno.get_nome()<<" reativado"<<endl;
+                getchar();
+                getchar();
                 break;
             }
             case 4:{
                 unsigned matricula;
                 cout<<"Matrícula a ser religada: ";
                 cin>>matricula;
-                //administrador.ativar_contrato();
+                Aluno aluno = *encontrar_aluno(matricula);
+                adm.religar_aluno(aluno);
+                cout<<"Contrato de "<<aluno.get_nome()<<" desativado"<<endl;
+                getchar();
+                getchar();
                 break;    
             }
+            case 5:{
+                unsigned matricula;
+                cout<<"Matrícula: ";
+                cin>>matricula;
+                Aluno aluno = *encontrar_aluno(matricula);
+                if(aluno.status_contrato())
+                    cout<<"Contrato de "<<aluno.get_nome()<<" ativo"<<endl;
+                else
+                    cout<<"Contrato de "<<aluno.get_nome()<<"desativado"<<endl;
+                getchar();
+                getchar();
+                break;
+            }
+
         }        
     }
 }
 
 
 void Sistema::escolha_modo(unsigned modo){
-
-
     switch(modo){
-        case 1: 
-            //
-            // sistema_aluno()
+        case 1: {
+            unsigned matricula;
+            cout<<"Matrícula: ";
+            cin>>matricula;
+            Aluno aluno = *encontrar_aluno(matricula);
+            sistema_aluno(aluno);
             break;
+        }
         case 2:
             if(prof.match_senha(ler_senha()))
                 sistema_professor();
-            
             break;
         case 3:
             if(adm.match_senha(ler_senha()))
                 sistema_administrador();
-            
             break;
     }
 }
