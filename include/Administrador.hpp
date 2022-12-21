@@ -16,8 +16,6 @@ class Administrador{
         void religar_aluno(Aluno &aluno);
         void desligar_aluno(Aluno &aluno);
         Aluno *novo_aluno(std::string nome, unsigned matricula);
-        
-
 };
 
 

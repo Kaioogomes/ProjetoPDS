@@ -3,5 +3,7 @@
 
 TEST_CASE("Teste do construtor e da senha"){
     Professor prof;
-    CHECK_EQ(prof.get_senha(), SENHA_PROF);
+    CHECK(prof.match_senha("senha_prof"));
+    CHECK_FALSE(prof.match_senha("blabla"));
+    CHECK_FALSE(prof.match_senha("senha-prof"));
 }
