@@ -7,8 +7,9 @@ int main(){
     Administrador adm;
     Professor prof;
     std::map<unsigned, Aluno> aluno_db;
-    std::map<unsigned, Exercicio> exercicios_db;
+    std::map<unsigned, ExCardio> cardio_db;
+    std::map<unsigned, ExMusculacao> musculacao_db;
     std::map<unsigned, Treino> treino_db;
 
-    inicializar_sistema(aluno_db, exercicios_db, treino_db); 
+    inicializar_sistema(aluno_db, cardio_db, musculacao_db,  treino_db); 
 }
