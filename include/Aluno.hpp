@@ -25,6 +25,8 @@ class Aluno{
         // void set_gerador_matricula(unsigned mat);
         std::string get_nome();
         unsigned get_matricula();
+        bool operator<(const Aluno &outro); //comparacao por matricula
+        std::string get_info();
         // Treino *get_treino(unsigned n_treino);
         // void modificar_treino(unsigned n_treino, Treino treino);
     
