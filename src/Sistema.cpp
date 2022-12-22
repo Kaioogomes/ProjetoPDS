@@ -58,7 +58,7 @@ unsigned Sistema::entrar_sistema(){
 void Sistema::sistema_aluno(Aluno &aluno){
     unsigned comando;
     for(;;){
-        comando = get_informacao_num(std::string ("1 - Voltar ao Inicio     2 - Imprimir Treino"));
+        comando = get_informacao_num(std::string ("1 - Voltar ao Inicio     2 - Imprimir Treino\n"));
         switch(comando){
             case 1:
                 return;
@@ -193,12 +193,11 @@ void Sistema::sistema_administrador(){
     unsigned comando;
     for(;;){
         system("clear");
-        std::cout<<"Modo de Administrador"<<endl<<endl;
-        std::cout<<"1 - Voltar ao Inicio     2 - Adicionar Novo Aluno"<<endl;
-        std::cout<<"3 - Desligar Aluno       4 - Religar Aluno"<<endl;
-        std::cout<<"5 - Listar Alunos        6 - Verificar Situação de Contrato"<<endl;
+        comando = get_informacao_num(std::string("Modo de Administrador\n")+
+                                                 "1 - Voltar ao Inicio     2 - Adicionar Novo Aluno\n"+
+                                                 "3 - Desligar Aluno       4 - Religar Aluno\n"+
+                                                 "5 - Listar Alunos        6 - Verificar Situação de Contrato\n");
         unsigned matricula;
-        cin>>comando;
         switch(comando){
             case 1:
                 system("clear");
@@ -217,9 +216,6 @@ void Sistema::sistema_administrador(){
                 break;
             }
             case 3:{
-                // unsigned matricula;
-                // cout<<"Matrícula a ser desligada: ";
-                // cin>>matricula;
                 matricula = get_informacao_num("Matrícula a ser desligada: ");
                 Aluno &aluno = (*aluno_db.find(matricula)->second);
                 adm.desligar_aluno(aluno);
@@ -229,11 +225,7 @@ void Sistema::sistema_administrador(){
                 break;
             }
             case 4:{
-                // unsigned matricula;
-                // cout<<"Matrícula a ser religada: ";
-                // cin>>matricula;
                 matricula = get_informacao_num("Matrícula a ser religada: ");
-
                 Aluno &aluno = *encontrar_aluno(matricula);
                 adm.religar_aluno(aluno);
                 std::cout<<"Contrato de "<<aluno.get_nome()<<" religado"<<endl;
@@ -247,11 +239,7 @@ void Sistema::sistema_administrador(){
                 break;
             }
             case 6:{
-                // unsigned matricula;
-                // std::cout<<"Matrícula: ";
-                // cin>>matricula;
                 matricula = get_informacao_num("Matrícula: ");
-
                 Aluno aluno = *encontrar_aluno(matricula);
                 if(aluno.status_contrato())
                     std::cout<<"Contrato de "<<aluno.get_nome()<<" ativo"<<endl;
@@ -268,8 +256,6 @@ void Sistema::escolha_modo(unsigned modo){
     switch(modo){
         case 1: {
             unsigned matricula = get_informacao_num("Matrícula: ");
-            // std::cout<<"Matrícula: ";
-            // cin>>matricula;
             Aluno aluno = *encontrar_aluno(matricula);
             sistema_aluno(aluno);
             break;
@@ -317,7 +303,7 @@ void Sistema::lista_exercicios(){
 
     unsigned esp1 = 6, esp2 = 24;
     system("clear");
-    std::cout <<"Código\t"<<"Nome\t\t\t\t\t"<<"Tipo"<<std::endl;
+    std::cout <<"Código\t\t   "<<"Nome\t\t\t\t"<<"Tipo"<<std::endl;
 
 
     std::string atual, info;
