@@ -3,18 +3,20 @@
 
 #include "Exercicio.hpp"
 
+#define TIME_NDF 0
+
 class ExCardio: public Exercicio {
     public:
         ExCardio(
                 ExercicioBase *base,
-                unsigned tempo_exec
+                unsigned tempo_exec = TIME_NDF
                 //  std::string nome,
                 //  tempo_t tempo_exec,    
                 //  std::string instrucoes = 0,
                 //  tempo_t tempo = tempo_t(0)
                  );
 
-        ~ExCardio(){};
+        virtual ~ExCardio(){};
         virtual std::string get_descricao() override;
         // virtual bool operator==(const Exercicio &ex) override;
         // virtual std::ostream& operator<<(const Exercicio &ex) override;

@@ -16,8 +16,9 @@ class Professor{
         ExCardio *configurar_cardio(ExercicioBase *base, unsigned tempo);
         ExMusculacao *configurar_musculacao(ExercicioBase *base, unsigned series, unsigned repeticoes);
         Treino *novo_treino(std::string categoria, 
-                            std::set<ExCardio *> selecionados_c, 
-                            std::set<ExMusculacao *> selecionados_m);
+                            std::set<Exercicio *> selecionados);
+                            // std::set<ExCardio *> selecionados_c, 
+                            // std::set<ExMusculacao *> selecionados_m);
         // std::string ficha_aluno(unsigned matricula);
         void adicionar_treino(Aluno &aluno, Treino *treino);
         void remover_treino(Aluno &aluno, Treino *treino);

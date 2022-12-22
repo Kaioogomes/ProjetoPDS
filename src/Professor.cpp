@@ -14,13 +14,15 @@ ExercicioBase *novo_exercicio(std::string nome, TipoExerc tipo, unsigned codigo)
     return new ExercicioBase(nome, tipo, codigo);
 }
 
-Treino *Professor::novo_treino(std::string categoria, 
-                               std::set<ExCardio *> selecionados_c,
-                               std::set<ExMusculacao *> selecionados_m){
+
+
+Treino *Professor::novo_treino(std::string categoria,
+                               std::set<Exercicio *> selecionados){
+                            //    std::set<ExCardio *> selecionados_c,
+                            //    std::set<ExMusculacao *> selecionados_m){
     Treino *novo = new Treino(categoria);
 
-    novo->adicionar_cardio(selecionados_c);
-    novo->adicionar_musculacao(selecionados_m);
+    novo->adicionar_exercicios(selecionados);
 
     return novo;
 }

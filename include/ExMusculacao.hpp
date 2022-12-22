@@ -3,12 +3,15 @@
 
 #include "Exercicio.hpp"
 
+#define DEFALT_SERIES 3
+#define DEFALT_REPETICOES 15
+
 class ExMusculacao: public Exercicio {
     public:
         ExMusculacao(
                      ExercicioBase *base,
-                     unsigned series,
-                     unsigned repeticoes
+                     unsigned series = DEFALT_SERIES,
+                     unsigned repeticoes = DEFALT_REPETICOES
                     //  std::string nome,
                     //  unsigned series = 3,
                     //  unsigned repeticoes = 10,
