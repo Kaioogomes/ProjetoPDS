@@ -391,15 +391,17 @@ void Sistema::ler_exercicio(const std::string &linha_exercicio){
     std::stringstream ss(linha_exercicio);
     // std::string buffer;
 
+    std::string codigo_s;
     std::string nome;
-    std::string tipo_s;
-    unsigned codigo;
+    unsigned tipo_u;
 
+    std::getline(ss, codigo_s, ',');
     std::getline(ss, nome, ',');
-    std::getline(ss, tipo_s, ',');
-    ss >> codigo;
+    ss >> tipo_u;
 
-    ExercicioBase *novo = new ExercicioBase(nome, (tipo_s == "1")?MUSCULACAO:CARDIO, codigo);
+    unsigned codigo = std::atoi(codigo_s.c_str());
+
+    ExercicioBase *novo = new ExercicioBase(nome, (tipo_u == 0)?CARDIO:MUSCULACAO, codigo);
 
     exercicio_base_db.emplace(codigo, novo);
 }
