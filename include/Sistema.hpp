@@ -16,6 +16,7 @@ class Sistema{
         std::map<unsigned, Aluno *>  aluno_db;
         // std::map<unsigned, ExCardio> cardio_db;
         // std::map<unsigned, ExMusculacao> musculacao_db;
+        std::map<unsigned, ExercicioBase *> exercicio_base_db;
         std::map<unsigned, Treino *> treino_db;
     public:
         Sistema();
