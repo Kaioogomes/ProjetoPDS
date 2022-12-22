@@ -21,7 +21,7 @@ class Sistema{
         std::map<unsigned, Treino *> treino_db;
     public:
         Sistema();
-
+        ~Sistema();
         void inicializar_sistema();
         Aluno *encontrar_aluno(unsigned matricula);
         // bool verificar_senha_professor();
@@ -33,6 +33,7 @@ class Sistema{
         void sistema_administrador();
         void escolha_modo(unsigned modo);
         void lista_alunos();
+        unsigned get_informacao_num(std::string msg);
 };
 
 

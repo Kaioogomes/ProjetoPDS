@@ -30,6 +30,9 @@ void Aluno::adicionar_treino(Treino *treino){
     _ficha.insert(treino);
 }
 
+void Aluno::trocar_ficha(std::set<Treino *> nova_ficha){
+    _ficha = nova_ficha;
+}
 // void Aluno::set_gerador_matricula(unsigned mat){
 //     _gera_matricula = mat;
 // }

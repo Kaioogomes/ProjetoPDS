@@ -11,6 +11,32 @@ void Sistema::inicializar_sistema(){
     }
 }
 
+unsigned Sistema::get_informacao_num(std::string msg){
+    std::cout << msg;
+
+    unsigned info;
+
+    std::cin >> info;
+
+    std::cout << std::endl;
+
+    return info;
+}
+
+Sistema::~Sistema(){
+    for(auto pair: aluno_db){
+        delete pair.second;
+    }
+
+    for(auto pair: exercicio_base_db){
+        delete pair.second;
+    }
+
+    for(auto pair: treino_db){
+        delete pair.second;
+    }
+}
+
 
 std::string Sistema::ler_senha(){
     string senha;
@@ -28,9 +54,13 @@ unsigned Sistema::entrar_sistema(){
     unsigned i;
     system("clear");
     cout<<"Sistema Iniciado"<<endl;
-    cout<<endl<<"Selecione Tipo de Usuário:"<<endl;
-    cout<<"1 - Aluno"<<endl<<"2 - Professor"<<endl<<"3 - Administrador"<<endl;
-    cin>>i;
+    // cout<<endl<<"Selecione Tipo de Usuário:"<<endl;
+    // cout<<"1 - Aluno"<<endl<<"2 - Professor"<<endl<<"3 - Administrador"<<endl;
+
+    i = get_informacao_num(std::string("Selecione Tipo de Usuário:\n") +
+                           "1 - Aluno\n2 - Professor\n3 - Administrador\n\n");
+
+    // cin>>i;
     escolha_modo(i);
     return entrar_sistema();
 }
@@ -103,6 +133,8 @@ void Sistema::sistema_administrador(){
         cout<<"3 - Desligar Aluno       4 - Religar Aluno"<<endl;
         cout<<"5 - Verificar Situação de Contrato"<<endl;
 
+        unsigned matricula;
+
         cin>>comando;
         switch(comando){
             case 1:
@@ -110,7 +142,7 @@ void Sistema::sistema_administrador(){
                 return;
             case 2:{
                 string nome;
-                unsigned matricula = aluno_db.size()+1;
+                matricula = aluno_db.size()+1;
                 cout<<"Nome do aluno: ";
                 cin>>nome;
                 Aluno *novo = adm.novo_aluno(nome, matricula);
@@ -121,31 +153,36 @@ void Sistema::sistema_administrador(){
                 break;
             }
             case 3:{
-                unsigned matricula;
-                cout<<"Matrícula a ser desligada: ";
-                cin>>matricula;
+                // unsigned matricula;
+                // cout<<"Matrícula a ser desligada: ";
+                // cin>>matricula;
+                matricula = get_informacao_num("Matrícula a ser desligada: ");
                 Aluno aluno = (*aluno_db.find(matricula)->second);
                 adm.desligar_aluno(aluno);
-                cout<<"Contrato de "<<aluno.get_nome()<<" reativado"<<endl;
+                cout<<"Contrato de "<<aluno.get_nome()<<" desligado"<<endl;
                 getchar();
                 getchar();
                 break;
             }
             case 4:{
-                unsigned matricula;
-                cout<<"Matrícula a ser religada: ";
-                cin>>matricula;
+                // unsigned matricula;
+                // cout<<"Matrícula a ser religada: ";
+                // cin>>matricula;
+                matricula = get_informacao_num("Matrícula a ser religada: ");
+
                 Aluno aluno = *encontrar_aluno(matricula);
                 adm.religar_aluno(aluno);
-                cout<<"Contrato de "<<aluno.get_nome()<<" desativado"<<endl;
+                cout<<"Contrato de "<<aluno.get_nome()<<" religado"<<endl;
                 getchar();
                 getchar();
                 break;    
             }
             case 5:{
-                unsigned matricula;
-                cout<<"Matrícula: ";
-                cin>>matricula;
+                // unsigned matricula;
+                // cout<<"Matrícula: ";
+                // cin>>matricula;
+                matricula = get_informacao_num("Matrícula: ");
+
                 Aluno aluno = *encontrar_aluno(matricula);
                 if(aluno.status_contrato())
                     cout<<"Contrato de "<<aluno.get_nome()<<" ativo"<<endl;
@@ -164,9 +201,9 @@ void Sistema::sistema_administrador(){
 void Sistema::escolha_modo(unsigned modo){
     switch(modo){
         case 1: {
-            unsigned matricula;
-            cout<<"Matrícula: ";
-            cin>>matricula;
+            unsigned matricula = get_informacao_num("Matrícula: ");
+            // cout<<"Matrícula: ";
+            // cin>>matricula;
             Aluno aluno = *encontrar_aluno(matricula);
             sistema_aluno(aluno);
             break;

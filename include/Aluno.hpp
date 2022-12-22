@@ -18,7 +18,7 @@ class Aluno{
         Aluno(std::string nome, unsigned matricula);
         ~Aluno();
         void adicionar_treino(Treino *treino);
-        void trocar_ficha(std::set<Treino *> ficha);
+        void trocar_ficha(std::set<Treino *> nova_ficha);
         bool status_contrato();
         void ativar_contrato();
         void desativar_contrato();

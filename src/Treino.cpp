@@ -7,7 +7,7 @@
 // void Treino::adicionar_musculacao(std::set<ExMusculacao *> ex_musc){
     
 void Treino::adicionar_exercicios(std::set<Exercicio *> novos_ex) {
-
+    _exercicios.insert(novos_ex.begin(), novos_ex.end());
 }
 
 Treino::Treino(std::string categoria): _categoria(categoria){
