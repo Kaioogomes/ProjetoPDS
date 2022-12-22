@@ -1,61 +1,21 @@
 20
-Skater jumps laterais
-0
-1
-Toe Tap Lateral
-0
-2
-Lateral Shuffle Tap
-0
-3
-Corrida na esteira
-0
-4
-Bench Runner
-0
-5
-Polichinelo vertical com faixa de resistência
-0
-6
-Afundo com salto
-0
-7
-Bicicleta
-0
-8
-Pular corda
-0
-9
-Jump no bloco
-0
-10
-Barra fixa supinada
-1
-11
-Pull down
-1
-12
-Pulley ant ne
-1
-13
-Rosca scott w
-1
-14
-Rosca direta c.o
-1
-15
-Supino declinado
-1
-16
-Supino reto
-1
-17
-Elevação lateral com alteres
-1
-18
-Lag press 45
-1
-19
-Abdutor
-1
-20
+Skater jumps laterais,0,1
+Toe Tap Lateral,0,2
+Lateral Shuffle Tap,0,3
+Corrida na esteira,0,4
+Bench Runner,0,5
+Polichinelo vertical com faixa de resistência,0,6
+Afundo com salto,0,7
+Bicicleta,0,8
+Pular corda,0,9
+Jump no bloco,0,10
+Barra fixa supinada,1,11
+Pull down,1,12
+Pulley ant ne,1,13
+Rosca scott w,1,14
+Rosca direta c.o,1,15
+Supino declinado,1,16
+Supino reto,1,17
+Elevação lateral com alteres,1,18
+Lag press 45,1,19
+Abdutor,1,20
