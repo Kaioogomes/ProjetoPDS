@@ -74,18 +74,18 @@ void Sistema::sistema_professor(){
         system("clear");
         comando = get_informacao_num(std::string("Modo de professor\n") +
                                                 "1 - Voltar ao Inicio           2 - Novo Exercício\n"+
-                                                "3 - Alterar Treino de Aluno\n  4 - Novo Treino");
+                                                "3 - Alterar Treino de Aluno    4 - Novo Treino\n"+
+                                                "5 - Listar Exercícios\n");
         switch(comando){
             case 1:
                 return;
             case 2:{
                 TipoExerc tipo;
                 string nome; 
-                unsigned codigo = exercicio_base_db.size()+1;
-                comando = get_informacao_num(std::string("Tipo do exercício: \n")+
-                                                "1 - Musculação   2 - Cardio\n");
                 unsigned opcao;
-                cin>>opcao;
+                unsigned codigo = exercicio_base_db.size()+1;
+                opcao = get_informacao_num(std::string("Tipo do exercício: \n")+
+                                                "1 - Musculação   2 - Cardio\n");
                 switch (opcao){
                 case 1:
                     tipo = MUSCULACAO;
@@ -181,6 +181,11 @@ void Sistema::sistema_professor(){
                 }
                 break;
             }
+            case 5:{
+                if(exercicio_base_db.size() != 0)
+                    lista_exercicios();
+                break;
+            }
         }
     }
 }
@@ -188,10 +193,10 @@ void Sistema::sistema_administrador(){
     unsigned comando;
     for(;;){
         system("clear");
-        cout<<"Modo de Administrador"<<endl<<endl;
-        cout<<"1 - Voltar ao Inicio     2 - Adicionar Novo Aluno"<<endl;
-        cout<<"3 - Desligar Aluno       4 - Religar Aluno"<<endl;
-        cout<<"5 - Listar Alunos        6 - Verificar Situação de Contrato"<<endl;
+        std::cout<<"Modo de Administrador"<<endl<<endl;
+        std::cout<<"1 - Voltar ao Inicio     2 - Adicionar Novo Aluno"<<endl;
+        std::cout<<"3 - Desligar Aluno       4 - Religar Aluno"<<endl;
+        std::cout<<"5 - Listar Alunos        6 - Verificar Situação de Contrato"<<endl;
         unsigned matricula;
         cin>>comando;
         switch(comando){
@@ -201,12 +206,12 @@ void Sistema::sistema_administrador(){
             case 2:{
                 string nome;
                 matricula = aluno_db.size()+1;
-                cout<<"Nome do aluno: ";
+                std::cout<<"Nome do aluno: ";
                 getchar();
                 getline(cin, nome);
                 Aluno *novo = adm.novo_aluno(nome, matricula);
                 aluno_db.emplace(matricula, novo);
-                cout<<"Aluno "<<nome<<" adicionado com matricula "<<matricula<<endl;
+                std::cout<<"Aluno "<<nome<<" adicionado com matricula "<<matricula<<endl;
                 getchar();
                 getchar();
                 break;
@@ -218,7 +223,7 @@ void Sistema::sistema_administrador(){
                 matricula = get_informacao_num("Matrícula a ser desligada: ");
                 Aluno &aluno = (*aluno_db.find(matricula)->second);
                 adm.desligar_aluno(aluno);
-                cout<<"Contrato de "<<aluno.get_nome()<<" desligado"<<endl;
+                std::cout<<"Contrato de "<<aluno.get_nome()<<" desligado"<<endl;
                 getchar();
                 getchar();
                 break;
@@ -231,7 +236,7 @@ void Sistema::sistema_administrador(){
 
                 Aluno &aluno = *encontrar_aluno(matricula);
                 adm.religar_aluno(aluno);
-                cout<<"Contrato de "<<aluno.get_nome()<<" religado"<<endl;
+                std::cout<<"Contrato de "<<aluno.get_nome()<<" religado"<<endl;
                 getchar();
                 getchar();
                 break;    
@@ -243,15 +248,15 @@ void Sistema::sistema_administrador(){
             }
             case 6:{
                 // unsigned matricula;
-                // cout<<"Matrícula: ";
+                // std::cout<<"Matrícula: ";
                 // cin>>matricula;
                 matricula = get_informacao_num("Matrícula: ");
 
                 Aluno aluno = *encontrar_aluno(matricula);
                 if(aluno.status_contrato())
-                    cout<<"Contrato de "<<aluno.get_nome()<<" ativo"<<endl;
+                    std::cout<<"Contrato de "<<aluno.get_nome()<<" ativo"<<endl;
                 else
-                    cout<<"Contrato de "<<aluno.get_nome()<<" desativado"<<endl;
+                    std::cout<<"Contrato de "<<aluno.get_nome()<<" desativado"<<endl;
                 getchar();
                 getchar();
                 break;
@@ -263,7 +268,7 @@ void Sistema::escolha_modo(unsigned modo){
     switch(modo){
         case 1: {
             unsigned matricula = get_informacao_num("Matrícula: ");
-            // cout<<"Matrícula: ";
+            // std::cout<<"Matrícula: ";
             // cin>>matricula;
             Aluno aluno = *encontrar_aluno(matricula);
             sistema_aluno(aluno);
@@ -301,6 +306,36 @@ void Sistema::lista_alunos(){
         std::getline(at, info);
 
         std::cout << ((info == "1")?"Ativo":"Desativo") << std::endl;
+    }
+
+    getchar();
+    getchar();
+}
+
+void Sistema::lista_exercicios(){
+    std::stringstream lista(prof.lista_exercios(exercicio_base_db));
+
+    unsigned esp1 = 6, esp2 = 24;
+    system("clear");
+    std::cout <<"Código\t"<<"Nome\t\t\t\t\t"<<"Tipo"<<std::endl;
+
+
+    std::string atual, info;
+    while(std::getline(lista, atual)){
+        std::stringstream at(atual);
+        std::getline(at, info, ',');
+        
+
+        std::cout << setw(esp1) << left << info <<"\t" ;
+
+        std::getline(at, info, ',');
+
+        std::cout << setw(esp2) << left << info <<"\t\t";
+        
+        std::getline(at, info);
+
+        std::cout << setw(esp2)<<left <<((info == "0")?"C":"M") << std::endl;
+
     }
 
     getchar();
