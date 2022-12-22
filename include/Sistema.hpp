@@ -23,6 +23,7 @@ class Sistema{
         ~Sistema();
         void inicializar_sistema();
         Aluno *encontrar_aluno(unsigned matricula);
+        ExercicioBase *encontrar_ex_base(unsigned codigo);
         std::string ler_senha();
         unsigned entrar_sistema();
         void sistema_aluno(Aluno &aluno);
