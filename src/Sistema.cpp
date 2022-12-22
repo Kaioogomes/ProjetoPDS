@@ -39,6 +39,10 @@ std::string Sistema::ler_senha(){
 Aluno *Sistema::encontrar_aluno(unsigned matricula){
     return (aluno_db.find(matricula))->second;
 }
+
+ExercicioBase *Sistema::encontrar_ex_base(unsigned codigo){
+    return (exercicio_base_db.find(codigo)->second);
+}
 unsigned Sistema::entrar_sistema(){
     unsigned i;
     system("clear");
@@ -67,8 +71,8 @@ void Sistema::sistema_professor(){
     for(;;){
         system("clear");
         comando = get_informacao_num(std::string("Modo de professor\n") +
-                                                "1 - Voltar ao Inicio     2 - Novo Exercício\n"+
-                                                "3 - Alterar Treino de Aluno\n");
+                                                "1 - Voltar ao Inicio           2 - Novo Exercício\n"+
+                                                "3 - Alterar Treino de Aluno\n  4 - Novo Treino");
         switch(comando){
             case 1:
                 return;
@@ -105,7 +109,7 @@ void Sistema::sistema_professor(){
                 Aluno aluno = (*encontrar_aluno(matricula));
                 unsigned opcao;
                 opcao = get_informacao_num(std::string("1 - Adicionar treino   2 - Remover treino\n")+
-                                                       "3 -  Nova Ficha\n      4 - Novo Treino\n");
+                                                       "3 -  Nova Ficha        4 - Novo Treino\n");
                 switch (opcao){
                 case 1:{
                     unsigned codigo;
@@ -146,6 +150,34 @@ void Sistema::sistema_professor(){
                 default:
                     break;
                 }
+            }
+            case 4:{
+                std::string categoria;
+                std::map<unsigned, Exercicio> treino;
+                std::cout<<"Categoria do treino: ";
+                getchar();
+                getline(cin, categoria);
+                unsigned numero;
+                numero = get_informacao_num("Número de exercícios: ");
+                unsigned codigo;
+                for(int i = 0; i<numero; i++){
+                    codigo = get_informacao_num(std::string("Código do exercício: \n"));
+                    ExercicioBase *exercicio = encontrar_ex_base(codigo);
+                    if(exercicio->get_tipo()==CARDIO){
+                        unsigned tempo;
+                        tempo = get_informacao_num(std::string("Tempo: "));
+                        prof.configurar_cardio(exercicio, tempo);
+                        treino.emplace(treino.size()+1, exercicio);
+                    }
+                    else{
+                        unsigned series, repeticoes;
+                        series = get_informacao_num(std::string("Séries: "));
+                        repeticoes = get_informacao_num(std::string("Repetições: "));
+                        prof.configurar_musculacao(exercicio, series, repeticoes);
+                        treino.emplace(treino.size()+1, exercicio);
+                    }
+                }
+                break;
             }
         }
     }
