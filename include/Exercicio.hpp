@@ -26,6 +26,7 @@ class Exercicio{
             // unsigned repeticoes = 10,
             // unsigned tempo_descanso = 30
         );
+        virtual ~Exercicio();
         // std::string get_nome();
 
         virtual std::string get_descricao() = 0;

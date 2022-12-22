@@ -15,6 +15,8 @@ ExCardio::ExCardio(
 {
 }
 
+// ExCardio::~ExCardio(){}
+
 std::string ExCardio::get_descricao() {
     std::string desc = _base->get_descricao() + ',' +
                        std::to_string(_tempo_execucao);

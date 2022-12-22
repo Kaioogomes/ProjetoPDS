@@ -8,7 +8,9 @@ Exercicio::Exercicio(
     // TipoExerc tipo
                      ):
     _base(base)
-    {}
+{}
+
+Exercicio::~Exercicio(){}
 
 bool Exercicio::operator<(const Exercicio &ex){
     return *_base < *(ex._base);

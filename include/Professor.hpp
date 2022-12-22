@@ -12,8 +12,12 @@ class Professor{
     public:
         Professor();
         bool match_senha(std::string candidata);
-        ExercicioBase *novo_exercicio(std::string nome, TipoExerc tipo, unsigned codigo);
-        //Treino *novo_treino();
+        ExercicioBase *novo_exercicio_base(std::string nome, TipoExerc tipo, unsigned codigo);
+        ExCardio *configurar_cardio(ExercicioBase *base, unsigned tempo);
+        ExMusculacao *configurar_musculacao(ExercicioBase *base, unsigned series, unsigned repeticoes);
+        Treino *novo_treino(std::string categoria, 
+                            std::set<ExCardio *> selecionados_c, 
+                            std::set<ExMusculacao *> selecionados_m);
         // std::string ficha_aluno(unsigned matricula);
         void adicionar_treino(Aluno &aluno, Treino *treino);
         void remover_treino(Aluno &aluno, Treino *treino);

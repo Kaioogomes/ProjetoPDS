@@ -17,6 +17,7 @@ class ExercicioBase{
         // static unsigned _gera_cod;
     public:
         ExercicioBase(std::string nome, TipoExerc tipo, unsigned codigo);
+        ExercicioBase(){};
         std::string get_nome();
         TipoExerc get_tipo() const;
         unsigned get_codigo();
