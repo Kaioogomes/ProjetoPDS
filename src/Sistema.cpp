@@ -296,11 +296,11 @@ void Sistema::lista_alunos(){
 
         std::getline(at, info, ',');
 
-        std::cout << setw(esp2) << left << ((info == "1")?"Ativo":"Desativo") << "\t\t";
+        std::cout << setw(esp2) << left << info << "\t\t";
 
-        std::getline(at, info, ',');
+        std::getline(at, info);
 
-        std::cout <<info << std::endl;
+        std::cout << ((info == "1")?"Ativo":"Desativo") << std::endl;
     }
 
     getchar();
@@ -419,6 +419,8 @@ void Sistema::ler_aluno(const std::string &linha_aluno){
     unsigned codigo = std::atoi(codigo_s.c_str());
 
     Aluno *novo = new Aluno(nome, codigo);
+
+    if(!status_contrato) adm.desligar_aluno(*novo);
 
     aluno_db.emplace(codigo, novo);
 }
