@@ -8,15 +8,16 @@
 #include "Professor.hpp"
 #include "ExCardio.hpp"
 #include "ExMusculacao.hpp"
+// #include <initializer_list>
 
 class Sistema{
     private:
         Professor prof;
         Administrador adm;
         std::map<unsigned, Aluno *>  aluno_db;
+        std::map<unsigned, ExercicioBase *> exercicio_base_db;
         // std::map<unsigned, ExCardio> cardio_db;
         // std::map<unsigned, ExMusculacao> musculacao_db;
-        std::map<unsigned, ExercicioBase *> exercicio_base_db;
         std::map<unsigned, Treino *> treino_db;
     public:
         Sistema();
@@ -31,7 +32,10 @@ class Sistema{
         void sistema_professor();
         void sistema_administrador();
         void escolha_modo(unsigned modo);
+        void lista_alunos();
 };
+
+
 
 
 #endif

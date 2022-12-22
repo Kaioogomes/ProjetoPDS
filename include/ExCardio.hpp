@@ -3,13 +3,11 @@
 
 #include "Exercicio.hpp"
 
-#define TIME_NDF 0
-
 class ExCardio: public Exercicio {
     public:
         ExCardio(
                 ExercicioBase *base,
-                unsigned tempo_exec = TIME_NDF
+                unsigned tempo_exec
                 //  std::string nome,
                 //  tempo_t tempo_exec,    
                 //  std::string instrucoes = 0,

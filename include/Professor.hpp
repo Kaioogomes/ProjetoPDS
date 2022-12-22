@@ -6,6 +6,10 @@
 
 #define SENHA_PROF "senha_prof"
 
+#define DEFALT_SERIES 3
+#define DEFALT_REPETICOES 15
+#define DEFALT_TEMPO 0
+
 class Professor{
     private:
         std::string _senha = SENHA_PROF;
@@ -13,13 +17,17 @@ class Professor{
         Professor();
         bool match_senha(std::string candidata);
         ExercicioBase *novo_exercicio_base(std::string nome, TipoExerc tipo, unsigned codigo);
-        ExCardio *configurar_cardio(ExercicioBase *base, unsigned tempo);
-        ExMusculacao *configurar_musculacao(ExercicioBase *base, unsigned series, unsigned repeticoes);
+        ExCardio *configurar_cardio(ExercicioBase *base, 
+                                    unsigned tempo = DEFALT_TEMPO);
+        ExMusculacao *configurar_musculacao(ExercicioBase *base, 
+                                            unsigned series = DEFALT_SERIES, 
+                                            unsigned repeticoes = DEFALT_REPETICOES);
         Treino *novo_treino(std::string categoria, 
                             std::set<Exercicio *> selecionados);
                             // std::set<ExCardio *> selecionados_c, 
                             // std::set<ExMusculacao *> selecionados_m);
         // std::string ficha_aluno(unsigned matricula);
+        void mudar_ficha(Aluno &aluno, std::set<Treino *> nova_ficha);
         void adicionar_treino(Aluno &aluno, Treino *treino);
         void remover_treino(Aluno &aluno, Treino *treino);
         //void associar_ficha(Aluno &aluno, std::map<unsigned, Treino *> ficha);
