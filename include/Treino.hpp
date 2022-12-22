@@ -15,8 +15,10 @@ class Treino{
         std::set<ExMusculacao *> _exercicio_musculacao;
         std::string _categoria;
     public:
-        //Treino(std::vector<unsigned> _codigos);
-        //~Treino();
+        Treino(std::string categoria);
+        ~Treino();
+        void adicionar_cardio(std::set<ExCardio *> ex_cardio);
+        void adicionar_musculacao(std::set<ExMusculacao *> ex_musc);
 };
 
 

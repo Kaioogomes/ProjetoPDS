@@ -14,7 +14,7 @@ std::string ExercicioBase::get_nome(){
     return _nome;
 }
 
-TipoExerc ExercicioBase::get_tipo(){
+TipoExerc ExercicioBase::get_tipo() const{
     return _tipo;
 }
 
