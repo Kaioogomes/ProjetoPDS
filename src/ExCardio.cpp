@@ -3,19 +3,12 @@
 ExCardio::ExCardio(
                     ExercicioBase *base,
                     unsigned tempo_exec
-                //    std::string nome,
-                //    tempo_t tempo_exec,
-                //    std::string instrucoes,
-                //    tempo_t tempo
                    ):
     
     Exercicio(base),
     _tempo_execucao(tempo_exec)
-    // _instrucoes(instrucoes)
 {
 }
-
-// ExCardio::~ExCardio(){}
 
 std::string ExCardio::get_descricao() {
     std::string desc = _base->get_descricao() + ',' +
