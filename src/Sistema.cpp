@@ -134,16 +134,16 @@ void Sistema::sistema_professor(){
                     getchar();
                     break;
                 }
-                case 2:{
-                    unsigned codigo;
-                    codigo = get_informacao_num(std::string("Código do exercício: \n"));
-                    Treino *treino = treino_db.find(codigo)->second;
-                    prof.remover_treino(aluno, treino);
-                    cout<<"Treino adicionado";
-                    getchar();
-                    getchar();
-                    break;       
-                }    
+                //case 2:{
+                    //unsigned codigo;
+                    //codigo = get_informacao_num(std::string("Código do exercício: \n"));
+                    //Treino *treino = treino_db.find(codigo)->second;
+                    //prof.remover_treino(aluno, treino);
+                    //cout<<"Treino remover";
+                    //getchar();
+                    //getchar();
+                    //break;       
+                //}    
                 case 3:{
                     unsigned numero;
                     numero = get_informacao_num("Número de treinos: ");
