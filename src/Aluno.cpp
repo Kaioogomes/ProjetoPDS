@@ -54,7 +54,7 @@ std::string Aluno::get_info(){
     std::string info = std::to_string(_matricula) + ',' +
                        _nome + ',';
     
-    info += (_contrato_ativo)?"Ativo":"Desativo";
+    info += (_contrato_ativo)?"1":"0";
     
     return info;
 }

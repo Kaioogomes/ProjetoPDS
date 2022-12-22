@@ -2,8 +2,7 @@
 
 #include <unistd.h>
 #include <iostream>
-#include <ostream>
-#include <fstream>
+
 
 using namespace std;
 
@@ -297,7 +296,7 @@ void Sistema::lista_alunos(){
 
         std::getline(at, info, ',');
 
-        std::cout << setw(esp2) << left << info << "\t\t";
+        std::cout << setw(esp2) << left << ((info == "1")?"Ativo":"Desativo") << "\t\t";
 
         std::getline(at, info, ',');
 
@@ -320,28 +319,29 @@ void Sistema::leitura_arquivos(){
         database.ignore(1);
 
         for(int i = 0; i < numero_de_exercicios; ++i){
-            string nome;
-            unsigned tipo_n;
-            unsigned codigo;
+            // string nome;
+            // unsigned tipo_n;
+            // unsigned codigo;
+            std::string linha_exercicio;
+            std::getline(database, linha_exercicio);            
 
-            
+            ler_exercicio(linha_exercicio);
 
-            getline(database, nome);
+            // database >> tipo_n;
 
-            database >> tipo_n;
+            // database >> codigo;
 
-            database >> codigo;
+            // cout << i << '\t' << nome << '\t' << tipo_n << '\t' << codigo << endl;
 
-            cout << i << '\t' << nome << '\t' << tipo_n << '\t' << codigo << endl;
+            // ExercicioBase *novo = new ExercicioBase(nome,(tipo_n)?MUSCULACAO:CARDIO,codigo);
 
-            ExercicioBase *novo = new ExercicioBase(nome,(tipo_n)?MUSCULACAO:CARDIO,codigo);
-
-            exercicio_base_db.emplace(codigo, novo);
-            database.ignore(1);
+            // exercicio_base_db.emplace(codigo, novo);
+            // database.ignore(1);
         }
-    } else{
-        cout << "Não consegue né" << endl;
-    }
+    } 
+    // else{
+    //     cout << "Não consegue né" << endl;
+    // }
 
     database.close();
 
@@ -356,28 +356,69 @@ void Sistema::leitura_arquivos(){
         database.ignore(1);
 
         for(int i = 0; i < numero_de_alunos; i++){
-            string nome = "nem leu";
-            unsigned matricula = 69;
-            bool contrato_ativo;
+            std::string linha_aluno;
+            
+            // string nome = "nem leu";
+            // unsigned matricula = 69;
+            // bool contrato_ativo;
 
-            getline(database, nome);
+            std::getline(database, linha_aluno);
 
-            database >> matricula;
+            ler_aluno(linha_aluno);
 
-            database >> contrato_ativo;
+            // database >> matricula;
 
-            Aluno *novo = new Aluno(nome,matricula);
+            // database >> contrato_ativo;
 
-            aluno_db.emplace(matricula, novo);
+            // Aluno *novo = new Aluno(nome,matricula);
 
-            if(contrato_ativo == false){
-                adm.desligar_aluno(*novo);
-            }
-            database.ignore(1);
+            // aluno_db.emplace(matricula, novo);
+
+            // if(contrato_ativo == false){
+            //     adm.desligar_aluno(*novo);
+            // }
+            // database.ignore(1);
         }
-    } else {
-        cout << "Não consegue né" << endl;
-    }
+    } 
+    // else {
+    //     cout << "Não consegue né" << endl;
+    // }
 
     database.close();
+}
+
+void Sistema::ler_exercicio(const std::string &linha_exercicio){
+    std::stringstream ss(linha_exercicio);
+    // std::string buffer;
+
+    std::string nome;
+    std::string tipo_s;
+    unsigned codigo;
+
+    std::getline(ss, nome, ',');
+    std::getline(ss, tipo_s, ',');
+    ss >> codigo;
+
+    ExercicioBase *novo = new ExercicioBase(nome, (tipo_s == "1")?MUSCULACAO:CARDIO, codigo);
+
+    exercicio_base_db.emplace(codigo, novo);
+}
+
+void Sistema::ler_aluno(const std::string &linha_aluno){
+    std::stringstream ss(linha_aluno);
+    // std::string buffer;
+
+    std::string codigo_s;
+    std::string nome;
+    bool status_contrato;
+
+    std::getline(ss, codigo_s, ',');
+    std::getline(ss, nome, ',');
+    ss >> status_contrato;
+
+    unsigned codigo = std::atoi(codigo_s.c_str());
+
+    Aluno *novo = new Aluno(nome, codigo);
+
+    aluno_db.emplace(codigo, novo);
 }

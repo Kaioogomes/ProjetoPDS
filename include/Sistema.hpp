@@ -10,6 +10,8 @@
 #include "ExMusculacao.hpp"
 #include <iomanip>
 #include <sstream>
+#include <ostream>
+#include <fstream>
 
 class Sistema{
     private:
@@ -33,6 +35,8 @@ class Sistema{
         void lista_alunos();
         void leitura_arquivos();
         unsigned get_informacao_num(std::string msg);
+        void ler_exercicio(const std::string &linha_exercicio);
+        void ler_aluno(const std::string &linha_aluno);
 };
 
 
