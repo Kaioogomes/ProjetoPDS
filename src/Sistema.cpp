@@ -57,14 +57,39 @@ void Sistema::sistema_professor(){
     unsigned comando;
     for(;;){
         system("clear");
-        cout<<"1 - Voltar ao Inicio     2 - "<<endl;
+        cout<<"1 - Voltar ao Inicio     2 - Novo Exercício"<<endl;
 
         cin>>comando;
         switch(comando){
             case 1:
                 return;
-            case 2:
+            case 2:{
+                TipoExerc tipo;
+                string nome; 
+                unsigned codigo = exercicio_base_db.size()+1;
+                cout<<"Tipo do exercício: "<<endl;
+                cout<<"1 - Musculação   2 - Cardio"<<endl;
+                unsigned opcao;
+                cin>>opcao;
+                switch (opcao){
+                case 1:
+                    tipo = MUSCULACAO;
+                    break;
+                case 2:
+                    tipo = CARDIO;
+                    break;
+                default:
+                    return;
+                }
+                cout<<"Nome do exercício: "<<endl;
+                cin>>nome;
+                ExercicioBase *novo = prof.novo_exercicio_base(nome, tipo, codigo);
+                exercicio_base_db.emplace(codigo, novo);
+                cout<<"Exercício "<<nome<<" adicionado com código "<<codigo<<endl;
+                getchar();
+                getchar();
                 break;
+                }
         }
     }
 }
