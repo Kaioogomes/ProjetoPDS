@@ -1,14 +1,6 @@
 #include "Exercicio.hpp"
 
-Exercicio::Exercicio(
-                     ExercicioBase *base
-
-    // std::string nome,
-    // tempo_t tempo,
-    // TipoExerc tipo
-                     ):
-    _base(base)
-{}
+Exercicio::Exercicio(ExercicioBase *base):_base(base){}
 
 Exercicio::~Exercicio(){}
 

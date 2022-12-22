@@ -9,13 +9,13 @@
 8,Bicicleta,0
 9,Pular corda,0
 10,Jump no bloco,0,
-11,Barra fixa supinada,1,
-12,Pull down,1,
-13,Pulley ant ne,1,
-14,Rosca scott w,1,
-15,Rosca direta c.o,1,
-16,Supino declinado,1,
-17,Supino reto,1,
-18,Elevação lateral com alteres,1,
-19,Lag press 45,1,
-20,Abdutor,1,
+11,Barra fixa supinada,1
+12,Pull down,1
+13,Pulley ant ne,1
+14,Rosca scott w,1
+15,Rosca direta c.o,1
+16,Supino declinado,1
+17,Supino reto,1
+18,Elevação lateral com alteres,1
+19,Lag press 45,1
+20,Abdutor,1

@@ -33,6 +33,7 @@ class Sistema{
         void sistema_administrador();
         void escolha_modo(unsigned modo);
         void lista_alunos();
+        void lista_exercicios();
         void leitura_arquivos();
         unsigned get_informacao_num(std::string msg);
         void ler_exercicio(const std::string &linha_exercicio);

@@ -26,10 +26,7 @@ void Professor::mudar_ficha(Aluno &aluno, std::set<Treino *> nova_ficha){
     aluno.trocar_ficha(nova_ficha);
 }
 
-Treino *Professor::novo_treino(std::string categoria,
-                               std::set<Exercicio *> selecionados){
-                            //    std::set<ExCardio *> selecionados_c,
-                            //    std::set<ExMusculacao *> selecionados_m){
+Treino *Professor::novo_treino(std::string categoria, std::set<Exercicio *> selecionados){
     Treino *novo = new Treino(categoria);
 
     novo->adicionar_exercicios(selecionados);
@@ -37,10 +34,13 @@ Treino *Professor::novo_treino(std::string categoria,
     return novo;
 }
 
-//Treino *novo_treino();
+std::string Professor::lista_exercios(std::map<unsigned, ExercicioBase *> &exercicios){
+    std::string lista;
 
-//std::string ficha_aluno(Aluno &aluno);
+    for(auto i = exercicios.begin(); i != exercicios.end(); i = next(i)){
+        lista.append(i->second->get_info()+ '\n');
+    }
 
-//void modificar_treino(Aluno &aluno);
+    return lista;
+}
 
-//void associar_ficha(Aluno &aluno, std::map<unsigned, Treino *> ficha);

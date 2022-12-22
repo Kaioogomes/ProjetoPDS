@@ -1,13 +1,11 @@
 #include "ExercicioBase.hpp"
 
-// unsigned ExercicioBase::_gera_cod = 0;
 
 ExercicioBase::ExercicioBase(std::string nome, TipoExerc tipo, unsigned codigo):
     _nome(nome),
     _tipo(tipo),
     _codigo(codigo)
 {
-    // _codigo = ++_gera_cod;
 }
 
 std::string ExercicioBase::get_nome(){
@@ -38,4 +36,12 @@ bool ExercicioBase::operator==(const ExercicioBase &ex){
 
 unsigned ExercicioBase::get_codigo(){
     return _codigo;
+}
+
+std::string ExercicioBase::get_info(){
+    std::string info = std::to_string(_codigo) + ',';
+    info += _nome + ',';
+    info += ((_tipo==CARDIO)?"0":"1");
+    
+    return info;
 }

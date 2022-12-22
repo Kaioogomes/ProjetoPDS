@@ -3,8 +3,6 @@
 
 #include <string>
 
-// extern ExercicioBase exercicio_db;
-
 enum TipoExerc{
     CARDIO, MUSCULACAO
 };
@@ -14,7 +12,6 @@ class ExercicioBase{
         std::string _nome;
         TipoExerc _tipo;
         unsigned _codigo;
-        // static unsigned _gera_cod;
     public:
         ExercicioBase(std::string nome, TipoExerc tipo, unsigned codigo);
         ExercicioBase(){};
@@ -24,8 +21,7 @@ class ExercicioBase{
         std::string get_descricao();
         bool operator<(const ExercicioBase &ex);
         bool operator==(const ExercicioBase &ex);
+        std::string get_info();
 };
-
-
 
 #endif
