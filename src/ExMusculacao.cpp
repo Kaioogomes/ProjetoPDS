@@ -12,9 +12,6 @@ ExMusculacao::ExMusculacao(
 {
 }
 
-// ExMusculacao::~ExMusculacao(){
-// }
-
 std::string ExMusculacao::get_descricao() {
     std::string desc = _base->get_descricao()  + ',' +
                        std::to_string(_series) + ',' +
