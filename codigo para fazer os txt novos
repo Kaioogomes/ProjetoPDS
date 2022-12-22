@@ -1,0 +1,40 @@
+void fechar_sistema(){
+    ofstream base_de_dados_alunos();
+    base_de_dados_alunos.open("Arquivo_alunos.txt", std::ofstream::out | std::ofstream::trunc);
+
+    int quantidade_de_aluno_nova;
+
+    quantidade_de_aluno_nova = aluno_db.size();
+
+    base_de_dados_alunos << quantidade_de_aluno_nova << std::endl;
+        
+    for(auto &a: alunos_db){
+        
+        base_de_dados_alunos << a->second.get_info() << std::endl;
+        
+    }
+
+
+
+    ofstream base_de_dados_exercicios();
+    base_de_dados_exercicios.open("Arquivo_Exercicios.txt", std::ofstream::out | std::ofstream::trunc);
+
+    int quantidade_de_exercicios_nova;
+
+    quantidade_de_exercicios_nova = exercicios_db.size();
+
+    base_de_dados_exercicos << quantidade_de_exercicios_nova << std::endl;
+        
+    for(auto &a: exercicios_db){
+        
+        base_de_dados_exercicios << a->second.get_info() << std::endl;
+        
+    }
+
+
+
+
+
+
+
+}
