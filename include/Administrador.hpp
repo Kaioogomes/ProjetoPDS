@@ -16,7 +16,7 @@ class Administrador{
         void religar_aluno(Aluno &aluno);
         void desligar_aluno(Aluno &aluno);
         Aluno *novo_aluno(std::string nome, unsigned matricula);
-        std::string lista_alunos(std::set<Aluno *> &alunos);
+        std::string lista_alunos(std::map<unsigned, Aluno *> &alunos);
 };
 
 

@@ -131,7 +131,7 @@ void Sistema::sistema_administrador(){
         cout<<"Modo de Administrador"<<endl<<endl;
         cout<<"1 - Voltar ao Inicio     2 - Adicionar Novo Aluno"<<endl;
         cout<<"3 - Desligar Aluno       4 - Religar Aluno"<<endl;
-        cout<<"5 - Verificar Situação de Contrato"<<endl;
+        cout<<"5 - Listar Alunos        6 - Verificar Situação de Contrato"<<endl;
 
         unsigned matricula;
 
@@ -178,6 +178,11 @@ void Sistema::sistema_administrador(){
                 break;    
             }
             case 5:{
+                if(aluno_db.size() != 0)
+                    lista_alunos();
+                break;
+            }
+            case 6:{
                 // unsigned matricula;
                 // cout<<"Matrícula: ";
                 // cin>>matricula;
@@ -219,3 +224,31 @@ void Sistema::escolha_modo(unsigned modo){
     }
 }
 
+void Sistema::lista_alunos(){
+    std::stringstream lista(adm.lista_alunos(aluno_db));
+
+    unsigned esp1 = 30, esp2 = 10;
+
+    std::cout << "Matrícula" << setw(esp1) << "Nome" << setw(esp2) << "Situação contrato\n" << std::endl;
+
+
+    std::string atual, info;
+
+    while(std::getline(lista, atual)){
+        std::stringstream at(atual);
+        std::getline(at, info, ',');
+
+        std::cout << info << setw(esp1);
+
+        std::getline(at, info, ',');
+
+        std::cout << info << setw(esp2);
+
+        std::getline(at, info, ',');
+
+        std::cout << info << std::endl;
+    }
+
+    getchar();
+    getchar();
+}

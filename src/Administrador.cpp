@@ -33,10 +33,12 @@ Aluno *Administrador::novo_aluno(std::string nome, unsigned matricula){
     return new Aluno(nome, matricula);
 }
 
-std::string lista_alunos(std::set<Aluno *> &alunos){
+std::string Administrador::lista_alunos(std::map<unsigned, Aluno *> &alunos){
     std::string lista;
 
-    for(auto a: alunos){
-        lista.append(a->get_info() + '\n');
+    for(auto i = alunos.begin(); i != alunos.end(); i = next(i)){
+        lista.append(i->second->get_info()+ '\n');
     }
+
+    return lista;
 }

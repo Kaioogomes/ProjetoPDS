@@ -8,6 +8,8 @@
 #include "Professor.hpp"
 #include "ExCardio.hpp"
 #include "ExMusculacao.hpp"
+#include <iomanip>
+#include <sstream>
 // #include <initializer_list>
 
 class Sistema{
