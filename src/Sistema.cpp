@@ -1,5 +1,6 @@
 #include "Sistema.hpp"
 
+#include <unistd.h>
 #include <iostream>
 using namespace std;
 
@@ -40,7 +41,7 @@ Sistema::~Sistema(){
 
 std::string Sistema::ler_senha(){
     string senha;
-    cout<<endl<<"Senha: ";
+    cout<<"Senha: ";
     cin>>senha;
 
     return senha;
@@ -54,13 +55,8 @@ unsigned Sistema::entrar_sistema(){
     unsigned i;
     system("clear");
     cout<<"Sistema Iniciado"<<endl;
-    // cout<<endl<<"Selecione Tipo de Usuário:"<<endl;
-    // cout<<"1 - Aluno"<<endl<<"2 - Professor"<<endl<<"3 - Administrador"<<endl;
-
     i = get_informacao_num(std::string("Selecione Tipo de Usuário:\n") +
                            "1 - Aluno\n2 - Professor\n3 - Administrador\n\n");
-
-    // cin>>i;
     escolha_modo(i);
     return entrar_sistema();
 }
@@ -188,36 +184,28 @@ void Sistema::sistema_administrador(){
                 string nome;
                 matricula = aluno_db.size()+1;
                 cout<<"Nome do aluno: ";
-                cin>>nome;
+                getchar();
+                getline(cin, nome);
                 Aluno *novo = adm.novo_aluno(nome, matricula);
                 aluno_db.emplace(matricula, novo);
                 cout<<"Aluno "<<nome<<" adicionado com matricula "<<matricula<<endl;
                 getchar();
-                getchar();
                 break;
             }
             case 3:{
-                // unsigned matricula;
-                // cout<<"Matrícula a ser desligada: ";
-                // cin>>matricula;
                 matricula = get_informacao_num("Matrícula a ser desligada: ");
-                Aluno aluno = (*aluno_db.find(matricula)->second);
+                Aluno &aluno = (*aluno_db.find(matricula)->second);
                 adm.desligar_aluno(aluno);
                 cout<<"Contrato de "<<aluno.get_nome()<<" desligado"<<endl;
-                getchar();
                 getchar();
                 break;
             }
             case 4:{
-                // unsigned matricula;
-                // cout<<"Matrícula a ser religada: ";
-                // cin>>matricula;
                 matricula = get_informacao_num("Matrícula a ser religada: ");
 
-                Aluno aluno = *encontrar_aluno(matricula);
+                Aluno &aluno = *encontrar_aluno(matricula);
                 adm.religar_aluno(aluno);
                 cout<<"Contrato de "<<aluno.get_nome()<<" religado"<<endl;
-                getchar();
                 getchar();
                 break;    
             }
@@ -227,16 +215,13 @@ void Sistema::sistema_administrador(){
                 break;
             }
             case 6:{
-                // unsigned matricula;
-                // cout<<"Matrícula: ";
-                // cin>>matricula;
                 matricula = get_informacao_num("Matrícula: ");
 
                 Aluno aluno = *encontrar_aluno(matricula);
                 if(aluno.status_contrato())
                     cout<<"Contrato de "<<aluno.get_nome()<<" ativo"<<endl;
                 else
-                    cout<<"Contrato de "<<aluno.get_nome()<<"desativado"<<endl;
+                    cout<<"Contrato de "<<aluno.get_nome()<<" desativado"<<endl;
                 getchar();
                 getchar();
                 break;
@@ -251,8 +236,6 @@ void Sistema::escolha_modo(unsigned modo){
     switch(modo){
         case 1: {
             unsigned matricula = get_informacao_num("Matrícula: ");
-            // cout<<"Matrícula: ";
-            // cin>>matricula;
             Aluno aluno = *encontrar_aluno(matricula);
             sistema_aluno(aluno);
             break;
@@ -271,9 +254,9 @@ void Sistema::escolha_modo(unsigned modo){
 void Sistema::lista_alunos(){
     std::stringstream lista(adm.lista_alunos(aluno_db));
 
-    unsigned esp1 = 30, esp2 = 10;
-
-    std::cout << "Matrícula" << setw(esp1) << "Nome" << setw(esp2) << "Situação contrato\n" << std::endl;
+    unsigned esp1 = 9, esp2 = 16;
+    system("clear");
+    std::cout <<"Matrícula\t"<< "Nome\t\t\t\t"  <<"Situação contrato\n" << std::endl;
 
 
     std::string atual, info;
@@ -282,15 +265,15 @@ void Sistema::lista_alunos(){
         std::stringstream at(atual);
         std::getline(at, info, ',');
 
-        std::cout << info << setw(esp1);
+        std::cout << setw(esp1) << left << info <<"\t" ;
 
         std::getline(at, info, ',');
 
-        std::cout << info << setw(esp2);
+        std::cout << setw(esp2) << left << info << "\t\t";
 
         std::getline(at, info, ',');
 
-        std::cout << info << std::endl;
+        std::cout <<info << std::endl;
     }
 
     getchar();
