@@ -1,0 +1,27 @@
+#include "doctest.h"
+#include "Aluno.hpp"
+
+Aluno Samuel = Aluno ("Samuel", 2);
+
+TEST_CASE("Teste do construtor"){
+    CHECK_EQ(Samuel.get_nome(), "Samuel");
+    CHECK_EQ(Samuel.get_matricula(), 2);
+    CHECK(Samuel.status_contrato());
+}
+
+TEST_CASE("Teste ativar e desaativar contrato"){
+    CHECK(Samuel.status_contrato());
+    Samuel.desativar_contrato();
+    CHECK_FALSE(Samuel.status_contrato());
+    Samuel.ativar_contrato();
+    CHECK(Samuel.status_contrato());
+}
+
+TEST_CASE("Teste operador <"){
+    Aluno Paulo = Aluno ("Paulo", 1);
+    Aluno Diogo = Aluno ("Diogo", 3);
+    CHECK(Paulo<Samuel);
+    CHECK_FALSE(Samuel<Paulo);
+    CHECK(Samuel<Diogo);
+    CHECK_FALSE(Diogo<Samuel);
+}
