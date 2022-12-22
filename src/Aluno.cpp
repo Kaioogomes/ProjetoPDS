@@ -21,13 +21,23 @@ void Aluno::desativar_contrato(){
 }
 
 void Aluno::adicionar_treino(Treino *treino){
-    unsigned tam_ficha = _ficha.size();
+    char ident = 'A' + _ficha.size();
 
-    _ficha.insert(treino);
+    _ficha.emplace(ident, treino);
+}
+
+void Aluno::remover_treino(char ident){
+    _ficha.erase(ident);
 }
 
 void Aluno::trocar_ficha(std::set<Treino *> nova_ficha){
-    _ficha = nova_ficha;
+    _ficha.clear();
+
+    char ident = 'A';
+    for(auto treino: nova_ficha){
+        _ficha.emplace(ident, treino);
+        ++ident;
+    }
 }
 
 std::string Aluno::get_nome(){
@@ -50,4 +60,19 @@ std::string Aluno::get_info(){
     info += (_contrato_ativo)?"1":"0";
     
     return info;
+}
+
+std::string Aluno::get_descricao_ficha(){
+    std::string desc = get_info();
+
+    for(auto &ex: _ficha){
+        desc += ',' + ex.first + "," + ex.second->get_descricao_simplificada();
+    }
+    return desc;
+}
+
+std::string Aluno::ver_treino(char ident){
+    Treino *procurado = _ficha.find(ident)->second;
+
+    return procurado->get_descricao();
 }

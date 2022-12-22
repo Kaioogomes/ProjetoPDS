@@ -10,7 +10,7 @@ class Aluno{
         std::string _nome;
         unsigned _matricula;
         bool _contrato_ativo;
-        std::set<Treino *> _ficha;      
+        std::map<char, Treino *> _ficha;      
     public:
         Aluno(std::string nome, unsigned matricula);
         ~Aluno();
@@ -19,10 +19,13 @@ class Aluno{
         bool status_contrato();
         void ativar_contrato();
         void desativar_contrato();
+        void remover_treino(char ident);
         std::string get_nome();
         unsigned get_matricula();
         bool operator<(const Aluno &outro); //comparacao por matricula
         std::string get_info();
+        std::string get_descricao_ficha();
+        std::string ver_treino(char ident);
 };
 
 

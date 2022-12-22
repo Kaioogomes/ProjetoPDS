@@ -25,7 +25,7 @@ class Professor{
         Treino *novo_treino(std::string categoria, std::set<Exercicio *> selecionados);
         void mudar_ficha(Aluno &aluno, std::set<Treino *> nova_ficha);
         void adicionar_treino(Aluno &aluno, Treino *treino);
-        void remover_treino(Aluno &aluno, Treino *treino);
+        void remover_treino(Aluno &aluno, char ident);
         std::string lista_exercios(std::map<unsigned, ExercicioBase *> &exercicios);
 };
 

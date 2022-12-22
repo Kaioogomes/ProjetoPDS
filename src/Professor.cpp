@@ -10,6 +10,10 @@ void Professor::adicionar_treino(Aluno &aluno, Treino *treino){
     aluno.adicionar_treino(treino);
 }
 
+void Professor::remover_treino(Aluno &aluno, char ident){
+    aluno.remover_treino(ident);
+}
+
 ExercicioBase *Professor::novo_exercicio_base(std::string nome, TipoExerc tipo, unsigned codigo){
     return new ExercicioBase(nome, tipo, codigo);
 }
