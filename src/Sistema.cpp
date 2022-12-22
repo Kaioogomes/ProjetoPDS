@@ -268,3 +268,31 @@ void Sistema::escolha_modo(unsigned modo){
     }
 }
 
+void Sistema::lista_alunos(){
+    std::stringstream lista(adm.lista_alunos(aluno_db));
+
+    unsigned esp1 = 30, esp2 = 10;
+
+    std::cout << "Matrícula" << setw(esp1) << "Nome" << setw(esp2) << "Situação contrato\n" << std::endl;
+
+
+    std::string atual, info;
+
+    while(std::getline(lista, atual)){
+        std::stringstream at(atual);
+        std::getline(at, info, ',');
+
+        std::cout << info << setw(esp1);
+
+        std::getline(at, info, ',');
+
+        std::cout << info << setw(esp2);
+
+        std::getline(at, info, ',');
+
+        std::cout << info << std::endl;
+    }
+
+    getchar();
+    getchar();
+}
