@@ -2,6 +2,9 @@
 
 #include <unistd.h>
 #include <iostream>
+#include <ostream>
+#include <fstream>
+
 using namespace std;
 
 Sistema::Sistema(){}
@@ -303,4 +306,78 @@ void Sistema::lista_alunos(){
 
     getchar();
     getchar();
+}
+
+void Sistema::leitura_arquivos(){
+
+    ifstream database;
+    database.open("exercicios_b_db.txt");
+
+
+    if(database.is_open()){
+        int numero_de_exercicios;
+        database >> numero_de_exercicios;
+        database.ignore(1);
+
+        for(int i = 0; i < numero_de_exercicios; ++i){
+            string nome;
+            unsigned tipo_n;
+            unsigned codigo;
+
+            
+
+            getline(database, nome);
+
+            database >> tipo_n;
+
+            database >> codigo;
+
+            cout << i << '\t' << nome << '\t' << tipo_n << '\t' << codigo << endl;
+
+            ExercicioBase *novo = new ExercicioBase(nome,(tipo_n)?MUSCULACAO:CARDIO,codigo);
+
+            exercicio_base_db.emplace(codigo, novo);
+            database.ignore(1);
+        }
+    } else{
+        cout << "Não consegue né" << endl;
+    }
+
+    database.close();
+
+    // ifstream database("alunos_db.txt");
+    database.open("alunos_db.txt");
+    
+
+    if(database.is_open()){
+        int numero_de_alunos;
+
+        database >> numero_de_alunos;
+        database.ignore(1);
+
+        for(int i = 0; i < numero_de_alunos; i++){
+            string nome = "nem leu";
+            unsigned matricula = 69;
+            bool contrato_ativo;
+
+            getline(database, nome);
+
+            database >> matricula;
+
+            database >> contrato_ativo;
+
+            Aluno *novo = new Aluno(nome,matricula);
+
+            aluno_db.emplace(matricula, novo);
+
+            if(contrato_ativo == false){
+                adm.desligar_aluno(*novo);
+            }
+            database.ignore(1);
+        }
+    } else {
+        cout << "Não consegue né" << endl;
+    }
+
+    database.close();
 }

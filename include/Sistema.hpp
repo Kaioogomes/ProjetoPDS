@@ -31,6 +31,7 @@ class Sistema{
         void sistema_administrador();
         void escolha_modo(unsigned modo);
         void lista_alunos();
+        void leitura_arquivos();
         unsigned get_informacao_num(std::string msg);
 };
 
