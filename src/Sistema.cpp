@@ -64,9 +64,22 @@ void Sistema::sistema_aluno(Aluno &aluno){
         switch(comando){
             case 1:
                 return;
+            
             case 2:
                 vizualiza_ficha(aluno);
                 break;
+            case 3:{
+                char ident;
+
+                std::cout << "Indique o treino a ser impresso: ";
+                std::cin >> ident;
+                std::cout << std::endl;
+
+                std::string lista_t = aluno.ver_treino(ident);
+                lista_treino(lista_t);
+
+                break;
+            }
         }
     }
 }
@@ -344,6 +357,62 @@ void Sistema::lista_exercicios(){
     getchar();
 }
 
+void Sistema::lista_treino(std::string &lista){
+    std::stringstream ss(lista);
+
+    std::string tipo_treino;
+    std::getline(ss, tipo_treino, ',');
+
+    std::string tamanho_s;
+    std::getline(ss, tamanho_s, ',');
+
+    unsigned tamanho = std::atoi(tamanho_s.c_str());
+    
+    std::cout << tipo_treino << ":\n\n";
+    
+    unsigned esp[] = {4, 24, 6, 10};
+    system("clear");
+    std::cout <<"Cód.\t "<<"Nome\t\t\t\t"<<"Series\t" << "Repeticoes\t" << "Tempo (min)"<<"\n\n";
+
+
+    std::string atual, info;
+
+    for(int i = 0; i < tamanho; i++){
+        std::string codigo_s;
+        std::getline(ss, codigo_s, ',');
+
+        std::cout << setw(esp[0]) << left << codigo_s << "\t ";
+
+        unsigned codigo = std::atoi(codigo_s.c_str());
+        
+        std::string nome;
+        std::getline(ss, nome, ',');
+
+        std::cout << setw(esp[1]) << left << nome << "\t";
+
+        if(exercicio_base_db.find(codigo)->second->get_tipo() == CARDIO){
+            std::string tempo;
+            std::getline(ss, tempo, ',');
+
+            std::cout << setw(esp[2]) << left << "-" << "\t";
+            std::cout << setw(esp[3]) << left << "-" << "\t";
+            std::cout << tempo << std::endl;
+        } else {
+            std::string series, repeticoes;
+
+            std::getline(ss, series, ',');
+            std::getline(ss, repeticoes, ',');
+
+            std::cout << setw(esp[2]) << left << series << "\t";
+            std::cout << setw(esp[3]) << left << repeticoes << "\t";
+            std::cout << "-" << std::endl; 
+        }
+    }
+
+    getchar();
+    getchar();
+}
+
 void Sistema::leitura_arquivos(){
 
     ifstream database;
@@ -356,33 +425,15 @@ void Sistema::leitura_arquivos(){
         database.ignore(1);
 
         for(int i = 0; i < numero_de_exercicios; ++i){
-            // string nome;
-            // unsigned tipo_n;
-            // unsigned codigo;
             std::string linha_exercicio;
             std::getline(database, linha_exercicio);            
 
             ler_exercicio(linha_exercicio);
-
-            // database >> tipo_n;
-
-            // database >> codigo;
-
-            // cout << i << '\t' << nome << '\t' << tipo_n << '\t' << codigo << endl;
-
-            // ExercicioBase *novo = new ExercicioBase(nome,(tipo_n)?MUSCULACAO:CARDIO,codigo);
-
-            // exercicio_base_db.emplace(codigo, novo);
-            // database.ignore(1);
         }
     } 
-    // else{
-    //     cout << "Não consegue né" << endl;
-    // }
 
     database.close();
 
-    // ifstream database("alunos_db.txt");
     database.open("alunos_db.txt");
     
 
@@ -394,33 +445,12 @@ void Sistema::leitura_arquivos(){
 
         for(int i = 0; i < numero_de_alunos; i++){
             std::string linha_aluno;
-            
-            // string nome = "nem leu";
-            // unsigned matricula = 69;
-            // bool contrato_ativo;
 
             std::getline(database, linha_aluno);
 
             ler_aluno(linha_aluno);
-
-            // database >> matricula;
-
-            // database >> contrato_ativo;
-
-            // Aluno *novo = new Aluno(nome,matricula);
-
-            // aluno_db.emplace(matricula, novo);
-
-            // if(contrato_ativo == false){
-            //     adm.desligar_aluno(*novo);
-            // }
-            // database.ignore(1);
         }
     } 
-    // else {
-    //     cout << "Não consegue né" << endl;
-    // }
-
     database.close();
 }
 
@@ -445,7 +475,6 @@ void Sistema::ler_exercicio(const std::string &linha_exercicio){
 
 void Sistema::ler_aluno(const std::string &linha_aluno){
     std::stringstream ss(linha_aluno);
-    // std::string buffer;
 
     std::string codigo_s;
     std::string nome;
