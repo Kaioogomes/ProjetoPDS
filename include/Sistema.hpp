@@ -27,17 +27,19 @@ class Sistema{
         Aluno *encontrar_aluno(unsigned matricula);
         ExercicioBase *encontrar_ex_base(unsigned codigo);
         std::string ler_senha();
-        unsigned entrar_sistema();
+        bool entrar_sistema();
         void sistema_aluno(Aluno &aluno);
         void sistema_professor();
         void sistema_administrador();
-        void escolha_modo(unsigned modo);
+        bool escolha_modo(unsigned modo);
         void lista_alunos();
         void lista_exercicios();
         void leitura_arquivos();
         unsigned get_informacao_num(std::string msg);
         void ler_exercicio(const std::string &linha_exercicio);
         void ler_aluno(const std::string &linha_aluno);
+        bool fechar_sistema();
+        void vizualiza_ficha(Aluno &aluno);
 };
 
 
