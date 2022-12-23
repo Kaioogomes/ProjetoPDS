@@ -30,10 +30,10 @@ void Professor::mudar_ficha(Aluno &aluno, std::set<Treino *> nova_ficha){
     aluno.trocar_ficha(nova_ficha);
 }
 
-Treino *Professor::novo_treino(std::string categoria, std::set<Exercicio *> selecionados){
-    Treino *novo = new Treino(categoria);
+Treino *Professor::novo_treino(std::string categoria, std::vector<Exercicio *> &selecionados){
+    Treino *novo = new Treino(categoria, selecionados);
 
-    novo->adicionar_exercicios(selecionados);
+    // novo->adicionar_exercicios(selecionados);
 
     return novo;
 }

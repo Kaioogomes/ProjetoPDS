@@ -20,6 +20,7 @@ class Aluno{
         void ativar_contrato();
         void desativar_contrato();
         void remover_treino(char ident);
+        unsigned tamanho_ficha();
         std::string get_nome();
         unsigned get_matricula();
         bool operator<(const Aluno &outro); //comparacao por matricula

@@ -10,11 +10,11 @@
 class Treino{
     private:
         std::string _tipo_treino;
-        std::set<Exercicio *> _exercicios;
+        std::vector<Exercicio *> _exercicios;
     public:
-        Treino(std::string tipo_treino);
+        Treino(std::string tipo_treino, std::vector<Exercicio *> &selecionados);
         ~Treino();
-        void adicionar_exercicios(std::set<Exercicio *> novos_ex);
+        // void adicionar_exercicios(std::vector<Exercicio *> &novos_ex);
         std::string get_descricao();
         std::string get_descricao_simplificada();
 };

@@ -1,11 +1,13 @@
 #include "Treino.hpp"
     
-void Treino::adicionar_exercicios(std::set<Exercicio *> novos_ex) {
-    _exercicios.insert(novos_ex.begin(), novos_ex.end());
-}
+// void Treino::adicionar_exercicios(std::vector<Exercicio *> &novos_ex) {
+//     _exercicios.insert(_exercicios.end(), nop)
+// }
 
-Treino::Treino(std::string tipo_treino): _tipo_treino(_tipo_treino){
-
+Treino::Treino(std::string tipo_treino, std::vector<Exercicio *> &selecionados): 
+_tipo_treino(tipo_treino)
+{
+    _exercicios = selecionados;
 }
 
 Treino::~Treino(){

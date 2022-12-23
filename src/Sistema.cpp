@@ -65,7 +65,7 @@ void Sistema::sistema_aluno(Aluno &aluno){
             case 1:
                 return;
             case 2:
-                cout<<aluno.get_descricao_ficha();
+                vizualiza_ficha(aluno);
                 break;
         }
     }
@@ -159,10 +159,10 @@ void Sistema::sistema_professor(){
                 getchar();
                 std::cout<<"Tipo de treino: ";
                 getline(cin, categoria);
-                Treino treino = Treino (categoria);
+                // Treino *treino = Treino (categoria);
                 unsigned numero;
                 numero = get_informacao_num("Número de exercícios: ");
-                std::set<Exercicio *> selecionados;
+                std::vector<Exercicio *> selecionados;
                 unsigned codigo;
                 for(int i = 0; i<numero; i++){
                     codigo = get_informacao_num(std::string("Código do exercício: "));
@@ -172,7 +172,7 @@ void Sistema::sistema_professor(){
                         unsigned tempo;
                         tempo = get_informacao_num(std::string("Tempo: "));
                         exercicio = prof.configurar_cardio(exercicio_base, tempo);
-                        selecionados.emplace(exercicio);
+                        selecionados.push_back(exercicio);
                     }
                     else{
                         ExMusculacao *exercicio;
@@ -180,11 +180,16 @@ void Sistema::sistema_professor(){
                         series = get_informacao_num(std::string("Séries: "));
                         repeticoes = get_informacao_num(std::string("Repetições: "));
                         exercicio = prof.configurar_musculacao(exercicio_base, series, repeticoes);
-                        selecionados.emplace(exercicio);
+                        selecionados.push_back(exercicio);
                     }
                     std::cout<<endl<< exercicio_base->get_nome()<<" adiconado"<<endl;
                     getchar();
-                }                    
+                }  
+                Treino *treino = prof.novo_treino(categoria, selecionados);
+                
+                unsigned cod_treino = treino_db.size() + 1;
+                treino_db.emplace(cod_treino, treino); 
+
                 std::cout<<"Treino de "<<categoria<<" adiconado"<<endl;
                 getchar();
                 break;

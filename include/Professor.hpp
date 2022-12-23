@@ -22,7 +22,7 @@ class Professor{
         ExMusculacao *configurar_musculacao(ExercicioBase *base, 
                                             unsigned series = DEFALT_SERIES, 
                                             unsigned repeticoes = DEFALT_REPETICOES);
-        Treino *novo_treino(std::string categoria, std::set<Exercicio *> selecionados);
+        Treino *novo_treino(std::string categoria, std::vector<Exercicio *> &selecionados);
         void mudar_ficha(Aluno &aluno, std::set<Treino *> nova_ficha);
         void adicionar_treino(Aluno &aluno, Treino *treino);
         void remover_treino(Aluno &aluno, char ident);
