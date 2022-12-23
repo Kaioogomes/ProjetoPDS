@@ -25,6 +25,13 @@ para Alunos, Professores e funcionários da Administração.
 
 6 - Como administrador eu gostaria de saber quem entra e quem sai da academia, para ter controle do fluxo de alunos e professores.
 
+## O makefile utilizado usa os comandos a seguir
+
+make - compila os arquivos
+make tests - roda os testes de unidade
+make run - compila e executa o programa
+make clean - apaga os arquivos compilados e executáveis
+
 ## Como usar o programa
 Ao executar o programa, será solicitado se o usuário é um aluno, professor ou administrador.
 
@@ -35,4 +42,8 @@ Como professor,  será solicitada a senha dos professores para acessar ("senha_p
 Como administrador,  será solicitada a senha dos administradores para acessar ("senha_adm"), poderá adicionar um novo aluno no sistema, desligar e religar o vínculo de um aluno, imprimir uma lista de todos os alunos, com suas respectivas matrículas e situação de contrato, e verificar a situação de contrato de um aluno em específico.
 
 Além disso, todos os usuários possuem a opção de retornar ao início,  permitindo a entrada de outros usuários.
+
+## Problemas encontrados
+
+TIvemos problmea ao acessar a base de dados do treinos, mas treinos adicionados durante o programa funcionam normamente.
 
