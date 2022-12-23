@@ -110,7 +110,7 @@ void Sistema::sistema_professor(){
             case 3:{
                 unsigned matricula;
                 matricula = get_informacao_num(std::string("Matrícula do aluno: "));
-                Aluno aluno = (*encontrar_aluno(matricula));
+                Aluno *aluno = encontrar_aluno(matricula);
                 unsigned opcao;
                 opcao = get_informacao_num(std::string("1 - Adicionar treino   2 - Remover treino\n")+
                                                        "3 -  Nova Ficha\n");
@@ -119,8 +119,8 @@ void Sistema::sistema_professor(){
                     unsigned codigo;
                     codigo = get_informacao_num(std::string("Código do treino: \n"));
                     Treino *treino = treino_db.find(codigo)->second;
-                    prof.adicionar_treino(aluno, treino);
-                    cout<<endl<<"Treino de "<<aluno.get_nome()<<" adicionado"<<endl;
+                    prof.adicionar_treino(*aluno, treino);
+                    cout<<endl<<"Treino de "<<aluno->get_nome()<<" adicionado"<<endl;
                     getchar();
                     getchar();
                     break;
@@ -130,8 +130,8 @@ void Sistema::sistema_professor(){
                     char ident;
                     std::cout<<"Identificação do treino: "<<endl;
                     std::cin>>ident;
-                    prof.remover_treino(aluno, ident);
-                    cout<<endl<<"Treino "<<ident<<" de "<<aluno.get_nome()<<" removido";
+                    prof.remover_treino(*aluno, ident);
+                    cout<<endl<<"Treino "<<ident<<" de "<<aluno->get_nome()<<" removido";
                     getchar();
                     getchar();
                     break;       
@@ -143,8 +143,8 @@ void Sistema::sistema_professor(){
                     codigo = get_informacao_num(std::string("Código do exercício: \n"));
                     Treino *treino = treino_db.find(codigo)->second;
                     nova_ficha.emplace(treino);                       
-                    prof.mudar_ficha(aluno, nova_ficha);
-                    cout<<endl<<"Ficha de "<<aluno.get_nome()<<" alterada";
+                    prof.mudar_ficha(*aluno, nova_ficha);
+                    cout<<endl<<"Ficha de "<<aluno->get_nome()<<" alterada";
                     getchar();
                     getchar();
                     break;  
