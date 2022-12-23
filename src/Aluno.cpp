@@ -63,10 +63,9 @@ std::string Aluno::get_info(){
 }
 
 std::string Aluno::get_descricao_ficha(){
-    std::string desc = get_info();
-
+    std::string desc;
     for(auto &ex: _ficha){
-        desc += ',' + ex.first + "," + ex.second->get_descricao_simplificada();
+        desc += + ex.first + "," + ex.second->get_descricao_simplificada();
     }
     return desc;
 }
@@ -75,4 +74,8 @@ std::string Aluno::ver_treino(char ident){
     Treino *procurado = _ficha.find(ident)->second;
 
     return procurado->get_descricao();
+}
+
+unsigned Aluno::tamanho_ficha(){
+    return _ficha.size();
 }
