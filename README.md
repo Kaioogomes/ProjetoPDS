@@ -27,6 +27,7 @@ para Alunos, Professores e funcionários da Administração.
 
 ## Como usar o programa
 Ao executar o programa, será solicitado se o usuário é um aluno, professor ou administrador.
+
 Como aluno, será solicitado sua matrícula e, em seguidas, apresentadas 2 opções imprimir seu treino ou verificar seu progresso.
 
 Como professor,  será solicitada a senha dos professores para acessar ("senha_prof") e, a seguir, as opções serão: criar um novo exercício no banco de dados, alterar o treino de um aluno, adicionar um novo treino no banco de dados ou imprimir uma lista dos exercícios disponíveis, com seus códigos de armazenamento e tipo (sendo C representando o tipo cardio e M, musculação).
