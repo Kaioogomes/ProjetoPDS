@@ -8,9 +8,7 @@ using namespace std;
 
 Sistema::Sistema(){}
 void Sistema::inicializar_sistema(){
-    for(;;){
-            entrar_sistema();
-    }
+    entrar_sistema();
 }
 unsigned Sistema::get_informacao_num(std::string msg){
     std::cout << msg;
@@ -45,25 +43,29 @@ Aluno *Sistema::encontrar_aluno(unsigned matricula){
 ExercicioBase *Sistema::encontrar_ex_base(unsigned codigo){
     return (exercicio_base_db.find(codigo)->second);
 }
-unsigned Sistema::entrar_sistema(){
+bool Sistema::entrar_sistema(){
     unsigned i;
     system("clear");
     cout<<"Sistema Iniciado"<<endl;
     i = get_informacao_num(std::string("Selecione Tipo de Usuário:\n") +
-                           "1 - Aluno\n2 - Professor\n3 - Administrador\n\n");
+                           "1 - Aluno\n2 - Professor\n3 - Administrador\n4 - Fechar Sistema\n\n");
 
-    escolha_modo(i);
+    if(escolha_modo(i))
+        return true;
     return entrar_sistema();
 }
 void Sistema::sistema_aluno(Aluno &aluno){
     unsigned comando;
     for(;;){
-        comando = get_informacao_num(std::string ("1 - Voltar ao Inicio     2 - Imprimir Treino\n"));
+        system("clear");
+        comando = get_informacao_num(std::string ("Sistema de ") + aluno.get_nome()+ "\n"
+                                                  "1 - Voltar ao Inicio     2 - Vizualizar ficha\n"+
+                                                  "3 - Imprimir Treino\n");
         switch(comando){
             case 1:
                 return;
             case 2:
-            //aluno.imprimir_treino();
+                cout<<aluno.get_descricao_ficha();
                 break;
         }
     }
@@ -111,40 +113,38 @@ void Sistema::sistema_professor(){
                 Aluno aluno = (*encontrar_aluno(matricula));
                 unsigned opcao;
                 opcao = get_informacao_num(std::string("1 - Adicionar treino   2 - Remover treino\n")+
-                                                       "3 -  Nova Ficha        4 - Novo Treino\n");
+                                                       "3 -  Nova Ficha\n");
                 switch (opcao){
                 case 1:{
                     unsigned codigo;
-                    codigo = get_informacao_num(std::string("Código do exercício: \n"));
+                    codigo = get_informacao_num(std::string("Código do treino: \n"));
                     Treino *treino = treino_db.find(codigo)->second;
                     prof.adicionar_treino(aluno, treino);
-                    cout<<"Treino adicionado";
+                    cout<<endl<<"Treino de "<<aluno.get_nome()<<" adicionado"<<endl;
                     getchar();
                     getchar();
                     break;
                 }
-                //case 2:{
-                    //unsigned codigo;
-                    //codigo = get_informacao_num(std::string("Código do exercício: \n"));
-                    //Treino *treino = treino_db.find(codigo)->second;
-                    //prof.remover_treino(aluno, treino);
-                    //cout<<"Treino remover";
-                    //getchar();
-                    //getchar();
-                    //break;       
-                //}    
+                case 2:{
+                    unsigned codigo;
+                    char ident;
+                    std::cout<<"Identificação do treino: "<<endl;
+                    std::cin>>ident;
+                    prof.remover_treino(aluno, ident);
+                    cout<<endl<<"Treino "<<ident<<" de "<<aluno.get_nome()<<" removido";
+                    getchar();
+                    getchar();
+                    break;       
+                }    
                 case 3:{
                     unsigned numero;
-                    numero = get_informacao_num("Número de treinos: ");
                     std::set<Treino *> nova_ficha;
                     unsigned codigo;
-                    for(int i = 0; i<numero; i++){
-                        codigo = get_informacao_num(std::string("Código do exercício: \n"));
-                        Treino *treino = treino_db.find(codigo)->second;
-                        nova_ficha.emplace(treino);                       
-                    }
+                    codigo = get_informacao_num(std::string("Código do exercício: \n"));
+                    Treino *treino = treino_db.find(codigo)->second;
+                    nova_ficha.emplace(treino);                       
                     prof.mudar_ficha(aluno, nova_ficha);
-                    cout<<"Ficha de "<<aluno.get_nome()<<" alterada";
+                    cout<<endl<<"Ficha de "<<aluno.get_nome()<<" alterada";
                     getchar();
                     getchar();
                     break;  
@@ -152,33 +152,41 @@ void Sistema::sistema_professor(){
                 default:
                     break;
                 }
+                break;
             }
             case 4:{
                 std::string categoria;
-                std::map<unsigned, Exercicio> treino;
-                std::cout<<"Categoria do treino: ";
                 getchar();
+                std::cout<<"Tipo de treino: ";
                 getline(cin, categoria);
+                Treino treino = Treino (categoria);
                 unsigned numero;
                 numero = get_informacao_num("Número de exercícios: ");
+                std::set<Exercicio *> selecionados;
                 unsigned codigo;
                 for(int i = 0; i<numero; i++){
-                    codigo = get_informacao_num(std::string("Código do exercício: \n"));
-                    ExercicioBase *exercicio = encontrar_ex_base(codigo);
-                    if(exercicio->get_tipo()==CARDIO){
+                    codigo = get_informacao_num(std::string("Código do exercício: "));
+                    ExercicioBase *exercicio_base = encontrar_ex_base(codigo);
+                    if(exercicio_base->get_tipo()==CARDIO){
+                        ExCardio *exercicio;
                         unsigned tempo;
                         tempo = get_informacao_num(std::string("Tempo: "));
-                        prof.configurar_cardio(exercicio, tempo);
-                        treino.emplace(treino.size()+1, exercicio);
+                        exercicio = prof.configurar_cardio(exercicio_base, tempo);
+                        selecionados.emplace(exercicio);
                     }
                     else{
+                        ExMusculacao *exercicio;
                         unsigned series, repeticoes;
                         series = get_informacao_num(std::string("Séries: "));
                         repeticoes = get_informacao_num(std::string("Repetições: "));
-                        prof.configurar_musculacao(exercicio, series, repeticoes);
-                        treino.emplace(treino.size()+1, exercicio);
+                        exercicio = prof.configurar_musculacao(exercicio_base, series, repeticoes);
+                        selecionados.emplace(exercicio);
                     }
-                }
+                    std::cout<<endl<< exercicio_base->get_nome()<<" adiconado"<<endl;
+                    getchar();
+                }                    
+                std::cout<<"Treino de "<<categoria<<" adiconado"<<endl;
+                getchar();
                 break;
             }
             case 5:{
@@ -211,7 +219,6 @@ void Sistema::sistema_administrador(){
                 Aluno *novo = adm.novo_aluno(nome, matricula);
                 aluno_db.emplace(matricula, novo);
                 std::cout<<"Aluno "<<nome<<" adicionado com matricula "<<matricula<<endl;
-                getchar();
                 getchar();
                 break;
             }
@@ -252,7 +259,7 @@ void Sistema::sistema_administrador(){
         }        
     }
 }
-void Sistema::escolha_modo(unsigned modo){
+bool Sistema::escolha_modo(unsigned modo){
     switch(modo){
         case 1: {
             unsigned matricula = get_informacao_num("Matrícula: ");
@@ -268,7 +275,11 @@ void Sistema::escolha_modo(unsigned modo){
             if(adm.match_senha(ler_senha()))
                 sistema_administrador();
             break;
+        case 4:
+            return fechar_sistema();
+            break;
     }
+    return false;
 }
 void Sistema::lista_alunos(){
     std::stringstream lista(adm.lista_alunos(aluno_db));
@@ -446,4 +457,53 @@ void Sistema::ler_aluno(const std::string &linha_aluno){
     if(!status_contrato) adm.desligar_aluno(*novo);
 
     aluno_db.emplace(codigo, novo);
+}
+
+void Sistema::vizualiza_ficha(Aluno &aluno){
+    std::stringstream lista(aluno.get_descricao_ficha());
+        unsigned esp1 = 6, esp2 = 20;
+    system("clear");
+    std::cout <<"Treino\t"<< "Tipo\t\t\t\t"  <<"Número de Exercícios\n" << std::endl;
+
+
+    std::string atual, info;
+    while(std::getline(lista, atual)){
+        std::stringstream at(atual);
+        std::getline(at, info, ',');
+
+        std::cout << setw(esp1) << left << info <<"\t" ;
+
+        std::getline(at, info, ',');
+
+        std::cout << setw(esp2) << left << info << "\t\t";
+
+        std::getline(at, info);
+
+        std::cout << info<<endl;
+    }
+
+    getchar();
+    getchar();
+}
+
+bool Sistema::fechar_sistema(){
+    std::ofstream database_alunos;
+    database_alunos.open("alunos_db.txt", std::ofstream::out | std::ofstream::trunc);
+    unsigned qtd_alunos_atualizada = aluno_db.size();
+    database_alunos << qtd_alunos_atualizada << std::endl;
+    for(auto &a: aluno_db){
+        database_alunos << a.second->get_info() << std::endl;
+    }
+    database_alunos.close();
+
+    std::ofstream database_exercicio;
+    database_exercicio.open("exercicios_b_db.txt", std::ofstream::out | std::ofstream::trunc);
+    unsigned qtd_exercicio_atualizada = exercicio_base_db.size();
+    database_exercicio << qtd_exercicio_atualizada << std::endl;
+    for(auto &a: exercicio_base_db){
+        database_exercicio << a.second->get_info() << std::endl;
+    }
+    database_exercicio.close();
+
+    return true;
 }
