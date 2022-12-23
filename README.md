@@ -45,5 +45,5 @@ Além disso, todos os usuários possuem a opção de retornar ao início,  permi
 
 ## Problemas encontrados
 
-TIvemos problmea ao acessar a base de dados do treinos, mas treinos adicionados durante o programa funcionam normamente.
+TIvemos problmea ao acessar a base de dados do treinos, mas treinos adicionados durante o programa funcionam normalmente.
 
